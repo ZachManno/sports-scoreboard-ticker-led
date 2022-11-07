@@ -1,4 +1,39 @@
 from enum import Enum
+import typing
+
+
+def parse_espn_api_json(sport: str, espn_json: dict):
+    print('here: ' + sport + ' ,' + str(espn_json))
+    home, away = parse_home_and_away(espn_json)
+    print('home team: ', home)
+    print('away team: ', away)
+    #scoreboard = Scoreboard(Sport[sport.upper()], )
+
+
+def parse_home_and_away(espn_json: dict):
+    home_json = espn_json['competitions'][0]['competitors'][0]
+    home_team_name = home_json['team']['abbreviation']
+    home_score = home_json.get('score', None)
+    home_record = home_json['records'][0]['summary']
+    home = Team(home_team_name, home_record, home_score)
+
+    away_json = espn_json['competitions'][0]['competitors'][1]
+    away_team_name = away_json['team']['abbreviation']
+    away_score = away_json.get('score', None)
+    away_record = away_json['records'][0]['summary']
+    away = Team(away_team_name, away_record, away_score)
+    return home, away
+
+
+class SeasonType(Enum):
+    REGULAR = 1
+    POSTSEASON = 2
+
+
+class Sport(Enum):
+    MLB = 1
+    NBA = 2
+    NFL = 3
 
 
 class TimeState(Enum):
@@ -17,7 +52,7 @@ class GameClock:
 
     @property
     def time_state(self):
-        return self.time_state
+        return self._time_state
 
     @time_state.setter
     def time_state(self, value):
@@ -25,7 +60,7 @@ class GameClock:
 
     @property
     def start_time(self):
-        return self.start_time
+        return self._start_time
 
     @start_time.setter
     def start_time(self, value):
@@ -33,7 +68,7 @@ class GameClock:
 
     @property
     def live_clock_time(self):
-        return self.live_clock_time
+        return self._live_clock_time
 
     @live_clock_time.setter
     def live_clock_time(self, value):
@@ -41,7 +76,7 @@ class GameClock:
 
     @property
     def live_period(self):
-        return self.live_clock_time
+        return self._live_clock_time
 
     @live_period.setter
     def live_period(self, value):
@@ -49,55 +84,66 @@ class GameClock:
 
 
 class Team:
-    def __init__(self, city_abbr: str, wins: int, losses: int, ties: int):
+    def __init__(self, city_abbr: str, record: str, score: typing.Optional[int] = None):
         self.city_abbr = city_abbr
-        self.wins = wins
-        self.losses = losses
-        self.ties = ties
+        self.record = record
+        self.current_score = score
+
+    @property
+    def score(self):
+        return self._score
+
+    @score.setter
+    def score(self, value):
+        self.score = value
 
     @property
     def city_abbr(self):
-        return self.city_abbr
+        return self._city_abbr
 
     @city_abbr.setter
     def city_abbr(self, value):
         self._city_abbr = value
 
     @property
-    def wins(self):
-        return self.wins
+    def record(self):
+        return self._record
 
-    @wins.setter
-    def wins(self, value):
-        self._wins = value
+    @record.setter
+    def record(self, value):
+        self._record = value
 
-    @property
-    def losses(self):
-        return self.losses
-
-    @losses.setter
-    def losses(self, value):
-        self._losses = value
-
-    @property
-    def ties(self):
-        return self.ties
-
-    @ties.setter
-    def ties(self, value):
-        self._ties = value
+    def __str__(self):
+        return str({'city_abbr': self.city_abbr, 'record': self.record, 'current_score': self.current_score})
 
 
 class Scoreboard:
-    def __init__(self, away_team: str, home_team: str, gameclock: GameClock):
+    def __init__(self, sport: Sport, away_team: Team, home_team: Team, gameclock: GameClock):
+        self.sport = sport
         self.away_team = away_team
         self.home_team = home_team
         self.gameclock = gameclock
 
     @property
+    def sport(self):
+        return self._sport
+
+    @sport.setter
+    def sport(self, value):
+        self._sport = value
+
+    @property
     def away_team(self):
-        return self.away_team
+        return self._away_team
 
     @away_team.setter
     def away_team(self, value):
         self._away_team = value
+
+    @property
+    def home_team(self):
+        return self._home_team
+
+    @home_team.setter
+    def home_team(self, value):
+        self._home_team = value

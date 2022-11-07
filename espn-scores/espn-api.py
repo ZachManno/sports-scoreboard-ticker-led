@@ -1,5 +1,7 @@
 import requests
+import time
 from espn_json_helper import *
+from Scoreboard import parse_espn_api_json
 
 # Set API URLs from https://gist.github.com/akeaswaran/b48b02f1c94f873c6655e7129910fc3b
 MLB = "http://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard"
@@ -29,6 +31,7 @@ def scrollResults():
             print("++++" + sport[1] + "***")
             # Get Teams and Score
             for game in data['events']:
+                parsed_games = parse_espn_api_json(sport[1], game)
                 displayHomeTeam = getHomeTeam(game)
                 displayHomeScore = getHomeScore(game)
                 displayAwayTeam = getAwayTeam(game)
@@ -84,6 +87,7 @@ def scrollResults():
                         print("")
 
 
-# while 1 == 1:
-scrollResults()
-#    time.sleep(90)
+while 1 == 1:
+    scrollResults()
+    print("---------------------------------------------------------------")
+    time.sleep(5)
