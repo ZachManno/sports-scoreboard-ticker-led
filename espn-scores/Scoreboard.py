@@ -87,7 +87,7 @@ class Team:
     def __init__(self, city_abbr: str, record: str, score: typing.Optional[int] = None):
         self.city_abbr = city_abbr
         self.record = record
-        self.current_score = score
+        self.score = score
 
     @property
     def score(self):
@@ -95,7 +95,7 @@ class Team:
 
     @score.setter
     def score(self, value):
-        self.score = value
+        self._score = value
 
     @property
     def city_abbr(self):
