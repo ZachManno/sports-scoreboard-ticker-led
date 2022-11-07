@@ -114,7 +114,7 @@ class Team:
         self._record = value
 
     def __str__(self):
-        return str({'city_abbr': self.city_abbr, 'record': self.record, 'current_score': self.current_score})
+        return str({'city_abbr': self.city_abbr, 'record': self.record, 'score': self.score})
 
 
 class Scoreboard:
