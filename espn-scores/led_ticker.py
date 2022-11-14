@@ -29,15 +29,14 @@ class GraphicsRunner(SampleBase):
         blue = graphics.Color(0, 255, 213)
 
         yellow = graphics.Color(255, 255, 0)
-
-        scoreboard_index = 0
-        current_games = call_espn_api_and_load_scoreboard()
-        length_of_games_today = len(current_games)
         home_score = ''
         away_score = ''
         final = ''
 
         while True:
+            scoreboard_index = 0
+            current_games = call_espn_api_and_load_scoreboard()
+            length_of_games_today = len(current_games)
             scoreboard = current_games[scoreboard_index]
             home_score = scoreboard.home_team.score
             home_name = scoreboard.home_team.city_abbr
