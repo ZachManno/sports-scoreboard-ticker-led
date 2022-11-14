@@ -15,6 +15,7 @@ class GraphicsRunner(SampleBase):
     def run(self):
         rotation = 0
         offscreen_canvas = self.matrix.CreateFrameCanvas()
+        print('brightness: ' + str(self.matrix.brightness))
         #canvas = self.matrix
         font = graphics.Font()
         font.LoadFont("font/5x8.bdf")
@@ -71,9 +72,6 @@ class GraphicsRunner(SampleBase):
             offscreen_canvas = self.matrix.SwapOnVSync(offscreen_canvas)
             offscreen_canvas = self.matrix.CreateFrameCanvas()
             time.sleep(5)
-            home_score = ''
-            away_score = ''
-            final = ''
 
 
 # Main function
