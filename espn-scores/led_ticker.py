@@ -41,8 +41,8 @@ class GraphicsRunner(SampleBase):
             #away_score = "MIN 22"
             #final = "FINAL"
             if rotation % 2 == 0:
-                graphics.DrawText(offscreen_canvas, font, 2, 9, blue, home_score)
-                graphics.DrawText(offscreen_canvas, font, 2, 20, blue, away_score)
+                graphics.DrawText(offscreen_canvas, font, 2, 9, blue, scoreboard.home_team.city_abbr + ' ' + home_score)
+                graphics.DrawText(offscreen_canvas, font, 2, 20, blue, scoreboard.away_team.city_abbr + ' ' + away_score)
                 if scoreboard.gameclock.time_state == TimeState.FINAL:
                     graphics.DrawText(offscreen_canvas, font, 2, 30, blue, 'FINAL')
             else:
