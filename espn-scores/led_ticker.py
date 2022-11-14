@@ -11,11 +11,12 @@ from threading import Timer
 class GraphicsRunner(SampleBase):
     def __init__(self, *args, **kwargs):
         super(GraphicsRunner, self).__init__(*args, **kwargs)
+        self.matrix.brightness = 50
 
     def run(self):
         rotation = 0
         offscreen_canvas = self.matrix.CreateFrameCanvas()
-        print('brightness: ' + str(self.matrix.brightness))
+        # print('brightness: ' + str(self.matrix.brightness))
         #canvas = self.matrix
         font = graphics.Font()
         font.LoadFont("font/5x8.bdf")
