@@ -1,7 +1,7 @@
 import requests
 import time
 from espn_json_helper import *
-from Scoreboard import parse_espn_api_json
+from espn_data_parser import parse_espn_api_json
 
 # Set API URLs from https://gist.github.com/akeaswaran/b48b02f1c94f873c6655e7129910fc3b
 MLB = "http://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard"
@@ -12,7 +12,9 @@ NCAAM = "http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-ba
 NCAAF = "http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard"
 
 # Set Base Sports Matrix[URL,dispayName,hasRank]
-sports = [[MLB, "MLB", False], [NFL, "NFL", False], [NBA, "NBA", False]]
+# sports = [[MLB, "MLB", False], [NFL, "NFL", False], [NBA, "NBA", False]]
+# sports = [[NFL, "NFL", False], [NBA, "NBA", False]]
+sports = [[NFL, "NFL", False]]
 
 
 # sports = [[MLB,"MLB",False], [NFL,"NFL",False], [NBA,"NBA",False], [NHL,"NHL",False], [NCAAF,"NCAAF",True], [NCAAM,
@@ -31,7 +33,7 @@ def scrollResults():
             print("++++" + sport[1] + "***")
             # Get Teams and Score
             for game in data['events']:
-                parsed_games = parse_espn_api_json(sport[1], game)
+                parsed_games = parse_espn_api_json(sport[1], game, data)
                 displayHomeTeam = getHomeTeam(game)
                 displayHomeScore = getHomeScore(game)
                 displayAwayTeam = getAwayTeam(game)
@@ -45,7 +47,7 @@ def scrollResults():
                         displayHomeTeam = displayHomeTeamRank + "-" + displayHomeTeam
                     elif (int(displayAwayTeamRank)) < 99:
                         displayAwayTeam = displayAwayTeamRank + "-" + displayAwayTeam
-                # Determin Winner and Note
+                # Determine Winner and Note
                 if getGameFinal(game) is True:
                     if getAwayWinner(game) is True:
                         displayAwayTeam = "*" + displayAwayTeam + "*"

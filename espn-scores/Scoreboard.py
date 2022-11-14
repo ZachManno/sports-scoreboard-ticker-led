@@ -2,59 +2,6 @@ from enum import Enum
 import typing
 
 
-def parse_espn_api_json(sport: str, espn_json: dict):
-    # print('here: ' + sport + ' ,' + str(espn_json))
-    home, away = parse_home_and_away(espn_json)
-    gameclock = parse_gameclock(Sport[sport.upper()], espn_json)
-    scoreboard = Scoreboard(Sport[sport.upper()], home, away, gameclock)
-    print('scoreboard: ', str(scoreboard))
-
-
-def parse_home_and_away(espn_json: dict):
-    home_json = espn_json['competitions'][0]['competitors'][0]
-    home_team_name = home_json['team']['abbreviation']
-    home_score = home_json.get('score', None)
-    home_record = home_json['records'][0]['summary']
-    home = Team(home_team_name, home_record, home_score)
-
-    away_json = espn_json['competitions'][0]['competitors'][1]
-    away_team_name = away_json['team']['abbreviation']
-    away_score = away_json.get('score', None)
-    away_record = away_json['records'][0]['summary']
-    away = Team(away_team_name, away_record, away_score)
-    return home, away
-
-
-def parse_gameclock(sport, espn_json: dict):
-    game_status = espn_json.get('status').get('type')
-    game_status_desc = game_status.get('name')
-
-    if not game_status_desc:
-        return None
-
-    time_state = None
-    live_clock = None
-    live_period = None
-    start_time = None
-    if game_status_desc == 'STATUS_IN_PROGRESS' or game_status_desc == 'STATUS_HALFTIME':
-        time_state = TimeState.LIVE
-        live_clock = espn_json.get('status').get('displayClock')
-        live_period = espn_json.get('status').get('period')
-        # NFL Halftime
-        if sport == Sport.NFL and live_clock == '0:00' and live_period == 2:
-            live_clock = 'HALF'
-    elif game_status_desc == 'STATUS_FINAL':
-        time_state = TimeState.FINAL
-    elif game_status_desc == 'STATUS_SCHEDULED':
-        time_state = TimeState.SCHEDULED
-        start_time = game_status.get('shortDetail')
-    else:
-        print("Unknown game_status_desc: " + game_status_desc)
-    if time_state:
-        return GameClock(time_state, start_time, live_clock, live_period)
-    return None
-
-
 class SeasonType(Enum):
     REGULAR = 1
     POSTSEASON = 2
