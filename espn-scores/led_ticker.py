@@ -19,7 +19,7 @@ class GraphicsRunner(SampleBase):
         # print('brightness: ' + str(self.matrix.brightness))
         #canvas = self.matrix
         font = graphics.Font()
-        font.LoadFont("font/5x8.bdf")
+        font.LoadFont("font/4x6.bdf")
 
         green = graphics.Color(0, 255, 0)
         #graphics.DrawCircle(canvas, 15, 15, 10, green)
