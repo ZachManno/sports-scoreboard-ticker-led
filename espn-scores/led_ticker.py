@@ -7,6 +7,8 @@ from espn_runner import call_espn_api_and_load_scoreboard
 from Scoreboard import TimeState
 from threading import Timer
 
+quarter_map = {1: '1ST', 2: '2ND', 3: '3RD', 4: '4TH'}
+
 
 class GraphicsRunner(SampleBase):
     def __init__(self, *args, **kwargs):
@@ -53,6 +55,8 @@ class GraphicsRunner(SampleBase):
                 graphics.DrawText(offscreen_canvas, font, 2, 20, blue, away_name + ' ' + away_score)
                 if scoreboard.gameclock.time_state == TimeState.FINAL:
                     graphics.DrawText(offscreen_canvas, font, 2, 30, blue, 'FINAL')
+                elif scoreboard.gameclock.time_state == TimeState.LIVE:
+                    graphics.DrawText(offscreen_canvas, font, 2, 30, blue, quarter_map[scoreboard.gameclock.live_period] + ' ' + scoreboard.gameclock.live_clock)
             else:
                 #home_score = "HHI 32"
                 #away_score = "NNN 22"
@@ -61,6 +65,8 @@ class GraphicsRunner(SampleBase):
                 graphics.DrawText(offscreen_canvas, font, 2, 20, green, away_name + ' ' + away_score)
                 if scoreboard.gameclock.time_state == TimeState.FINAL:
                     graphics.DrawText(offscreen_canvas, font, 2, 30, green, 'FINAL')
+                elif scoreboard.gameclock.time_state == TimeState.LIVE:
+                    graphics.DrawText(offscreen_canvas, font, 2, 30, green, quarter_map[scoreboard.gameclock.live_period] + ' ' + scoreboard.gameclock.live_clock)
 
             # graphics.DrawText(offscreen_canvas, weather_font, 40, 6, yellow, self.philly_weather.condition.text)
             # graphics.DrawText(offscreen_canvas, weather_font, 55, 13, yellow, str(self.philly_weather.condition.temperature))
