@@ -37,10 +37,10 @@ class GraphicsRunner(SampleBase):
             scoreboard = current_games[scoreboard_index]
             home_score = scoreboard.home_team.score
             home_name = scoreboard.home_team.city_abbr
-            if len(home_name == 2):
+            if len(home_name) == 2:
                 home_name += ' '
             away_name = scoreboard.away_team.city_abbr
-            if len(away_name == 2):
+            if len(away_name) == 2:
                 away_name += ' '
             away_score = scoreboard.away_team.score
             #home_score = "PHI 32"
