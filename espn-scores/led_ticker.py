@@ -74,8 +74,8 @@ class GraphicsRunner(SampleBase):
 if __name__ == "__main__":
     graphics_runner = GraphicsRunner()
     # My "just get it working" solution after digging through python in-program cron scheduling forums:
-    weather_update_interval = 900.0 #every 15 mins = 900.0
-    for i in range(16): # 16 weather updates = assumes program runs for at max 4 hours. Also creates 16 threads
-        Timer(weather_update_interval * i, graphics_runner.refresh_weather).start()
+    # weather_update_interval = 900.0 #every 15 mins = 900.0
+    # for i in range(16): # 16 weather updates = assumes program runs for at max 4 hours. Also creates 16 threads
+    #     Timer(weather_update_interval * i, graphics_runner.refresh_weather).start()
     if (not graphics_runner.process()):
         graphics_runner.print_help()
