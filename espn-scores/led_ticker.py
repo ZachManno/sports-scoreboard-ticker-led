@@ -46,14 +46,15 @@ class GraphicsRunner(SampleBase):
                 if rotation % 2 == 0:
                     graphics.DrawText(offscreen_canvas, font, 2, 9, blue, home_name + ' ' + home_score)
                     graphics.DrawText(offscreen_canvas, font, 2, 20, blue, away_name + ' ' + away_score)
-                    if scoreboard.gameclock.time_state and scoreboard.gameclock.time_state == TimeState.FINAL:
-                        graphics.DrawText(offscreen_canvas, font, 2, 30, blue, 'FINAL')
-                    elif scoreboard.gameclock.time_state and scoreboard.gameclock.time_state == TimeState.LIVE:
-                        if scoreboard.gameclock.live_clock == 'HALF':
-                            gameclock = 'HALF'
-                        else:
-                            gameclock = quarter_map[scoreboard.gameclock.live_period] + ' ' + scoreboard.gameclock.live_clock
-                        graphics.DrawText(offscreen_canvas, font, 2, 30, blue, gameclock)
+                    if scoreboard.gameclock.time_state:
+                        if scoreboard.gameclock.time_state == TimeState.FINAL:
+                            graphics.DrawText(offscreen_canvas, font, 2, 30, blue, 'FINAL')
+                        elif scoreboard.gameclock.time_state == TimeState.LIVE:
+                            if scoreboard.gameclock.live_clock == 'HALF':
+                                gameclock = 'HALF'
+                            else:
+                                gameclock = quarter_map[scoreboard.gameclock.live_period] + ' ' + scoreboard.gameclock.live_clock
+                            graphics.DrawText(offscreen_canvas, font, 2, 30, blue, gameclock)
                 else:
                     #home_score = "HHI 32"
                     #away_score = "NNN 22"
