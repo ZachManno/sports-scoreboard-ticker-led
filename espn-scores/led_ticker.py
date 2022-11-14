@@ -40,6 +40,9 @@ class GraphicsRunner(SampleBase):
                 if len(away_name) == 2:
                     away_name += ' '
                 away_score = scoreboard.away_team.score
+                gameclock = quarter_map[scoreboard.gameclock.live_period] + ' ' + scoreboard.gameclock.live_clock
+                if scoreboard.gameclock.live_clock == 'HALF':
+                    gameclock = 'HALF'
                 #home_score = "PHI 32"
                 #away_score = "MIN 22"
                 #final = "FINAL"
@@ -49,7 +52,7 @@ class GraphicsRunner(SampleBase):
                     if scoreboard.gameclock.time_state == TimeState.FINAL:
                         graphics.DrawText(offscreen_canvas, font, 2, 30, blue, 'FINAL')
                     elif scoreboard.gameclock.time_state == TimeState.LIVE:
-                        graphics.DrawText(offscreen_canvas, font, 2, 30, blue, quarter_map[scoreboard.gameclock.live_period] + ' ' + scoreboard.gameclock.live_clock)
+                        graphics.DrawText(offscreen_canvas, font, 2, 30, blue, gameclock)
                 else:
                     #home_score = "HHI 32"
                     #away_score = "NNN 22"
@@ -59,7 +62,7 @@ class GraphicsRunner(SampleBase):
                     if scoreboard.gameclock.time_state == TimeState.FINAL:
                         graphics.DrawText(offscreen_canvas, font, 2, 30, green, 'FINAL')
                     elif scoreboard.gameclock.time_state == TimeState.LIVE:
-                        graphics.DrawText(offscreen_canvas, font, 2, 30, green, quarter_map[scoreboard.gameclock.live_period] + ' ' + scoreboard.gameclock.live_clock)
+                        graphics.DrawText(offscreen_canvas, font, 2, 30, green, gameclock)
 
                 # graphics.DrawText(offscreen_canvas, weather_font, 40, 6, yellow, self.philly_weather.condition.text)
                 # graphics.DrawText(offscreen_canvas, weather_font, 55, 13, yellow, str(self.philly_weather.condition.temperature))
