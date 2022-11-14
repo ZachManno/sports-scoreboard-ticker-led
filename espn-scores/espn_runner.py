@@ -33,6 +33,7 @@ def call_espn_api_and_load_scoreboard():
                 current_scoreboards_list.append(parse_espn_api_json('NFL', game, espn_data))
         for scoreboard in current_scoreboards_list:
             print(str(scoreboard))
+    return current_scoreboards_list
 
 
 if __name__ == "__main__":
