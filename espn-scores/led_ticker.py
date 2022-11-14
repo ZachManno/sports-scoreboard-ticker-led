@@ -36,23 +36,29 @@ class GraphicsRunner(SampleBase):
         while True:
             scoreboard = current_games[scoreboard_index]
             home_score = scoreboard.home_team.score
+            home_name = scoreboard.home_team.city_abbr
+            if len(home_name == 2):
+                home_name += ' '
+            away_name = scoreboard.away_team.city_abbr
+            if len(away_name == 2):
+                away_name += ' '
             away_score = scoreboard.away_team.score
             #home_score = "PHI 32"
             #away_score = "MIN 22"
             #final = "FINAL"
             if rotation % 2 == 0:
-                graphics.DrawText(offscreen_canvas, font, 2, 9, blue, scoreboard.home_team.city_abbr + ' ' + home_score)
-                graphics.DrawText(offscreen_canvas, font, 2, 20, blue, scoreboard.away_team.city_abbr + ' ' + away_score)
+                graphics.DrawText(offscreen_canvas, font, 2, 9, blue, home_name + ' ' + home_score)
+                graphics.DrawText(offscreen_canvas, font, 2, 20, blue, away_name + ' ' + away_score)
                 if scoreboard.gameclock.time_state == TimeState.FINAL:
                     graphics.DrawText(offscreen_canvas, font, 2, 30, blue, 'FINAL')
             else:
                 #home_score = "HHI 32"
                 #away_score = "NNN 22"
                 #final = "FINAL"
-                graphics.DrawText(offscreen_canvas, font, 2, 9, green, home_score)
-                graphics.DrawText(offscreen_canvas, font, 2, 20, green, away_score)
+                graphics.DrawText(offscreen_canvas, font, 2, 9, green, home_name + ' ' + home_score)
+                graphics.DrawText(offscreen_canvas, font, 2, 20, green, away_name + ' ' + away_score)
                 if scoreboard.gameclock.time_state == TimeState.FINAL:
-                    graphics.DrawText(offscreen_canvas, font, 2, 30, green, final)
+                    graphics.DrawText(offscreen_canvas, font, 2, 30, green, 'FINAL')
 
             # graphics.DrawText(offscreen_canvas, weather_font, 40, 6, yellow, self.philly_weather.condition.text)
             # graphics.DrawText(offscreen_canvas, weather_font, 55, 13, yellow, str(self.philly_weather.condition.temperature))
