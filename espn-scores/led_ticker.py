@@ -40,7 +40,6 @@ class GraphicsRunner(SampleBase):
                 if len(away_name) == 2:
                     away_name += ' '
                 away_score = scoreboard.away_team.score
-                gameclock = quarter_map[scoreboard.gameclock.live_period] + ' ' + scoreboard.gameclock.live_clock
                 #home_score = "PHI 32"
                 #away_score = "MIN 22"
                 #final = "FINAL"
@@ -52,6 +51,8 @@ class GraphicsRunner(SampleBase):
                     elif scoreboard.gameclock.time_state == TimeState.LIVE:
                         if scoreboard.gameclock.live_clock == 'HALF':
                             gameclock = 'HALF'
+                        else:
+                            gameclock = quarter_map[scoreboard.gameclock.live_period] + ' ' + scoreboard.gameclock.live_clock
                         graphics.DrawText(offscreen_canvas, font, 2, 30, blue, gameclock)
                 else:
                     #home_score = "HHI 32"
