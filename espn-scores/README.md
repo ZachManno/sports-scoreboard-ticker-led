@@ -18,3 +18,10 @@ Set Python interpreter as
 ```
 ~/.pyenv/versions/espn-scores/bin/python
 ```
+
+## Running LED Script
+- cd to this directory (cd espn-scores)
+- run script
+```bash
+sudo ./led_ticker.py --led-cols=64 --led-rows=32 --led-gpio-mapping=adafruit-hat --led-slowdown-gpio=3
+```
