@@ -70,6 +70,7 @@ def parse_gameclock(sport, espn_game_json: dict):
         # NFL Halftime
         if sport == Sport.NFL and live_clock == '0:00' and live_period == 2:
             live_clock = 'HALF'
+            live_period = ''
     elif game_status_desc == 'STATUS_FINAL':
         time_state = TimeState.FINAL
     elif game_status_desc == 'STATUS_SCHEDULED':
