@@ -30,11 +30,11 @@ class GraphicsRunner(SampleBase):
         # Home
         graphics.DrawText(offscreen_canvas, self.font, 2, 9, color,
                           self.format_team_abbr(scoreboard.home_team.city_abbr) + ' ' + scoreboard.home_team.score)
-        graphics.DrawText(offscreen_canvas, self.font, 34, 9, self.white, scoreboard.home_team.record)
+        graphics.DrawText(offscreen_canvas, self.font, 36, 9, self.white, scoreboard.home_team.record)
         # Away
         graphics.DrawText(offscreen_canvas, self.font, 2, 20, color,
                           self.format_team_abbr(scoreboard.away_team.city_abbr) + ' ' + scoreboard.away_team.score)
-        graphics.DrawText(offscreen_canvas, self.font, 34, 20, self.white, scoreboard.away_team.record)
+        graphics.DrawText(offscreen_canvas, self.font, 36, 20, self.white, scoreboard.away_team.record)
         if scoreboard.gameclock.time_state:
             if scoreboard.gameclock.time_state == TimeState.FINAL:
                 graphics.DrawText(offscreen_canvas, self.font, 2, 30, color, 'FINAL')
