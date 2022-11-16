@@ -13,7 +13,7 @@ quarter_map = {1: '1ST', 2: '2ND', 3: '3RD', 4: '4TH'}
 class GraphicsRunner(SampleBase):
     def __init__(self, *args, **kwargs):
         self.font = graphics.Font()
-        self.font.LoadFont("font/5x7.bdf")
+        self.font.LoadFont("font/4x6.bdf")
         self.green = graphics.Color(0, 255, 0)
         self.blue = graphics.Color(0, 255, 213)
         self.yellow = graphics.Color(255, 255, 0)
