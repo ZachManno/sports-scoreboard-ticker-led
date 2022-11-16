@@ -31,7 +31,7 @@ class GraphicsRunner(SampleBase):
         graphics.DrawText(offscreen_canvas, self.font, 2, 9, color,
                           self.format_team_abbr(scoreboard.home_team.city_abbr) + ' ' + scoreboard.home_team.score)
         graphics.DrawText(offscreen_canvas, self.font, 36, 9, self.white, scoreboard.home_team.record)
-        graphics.DrawText(offscreen_canvas, self.font, 80, 9, self.white, scoreboard.home_team.record)
+        graphics.DrawText(offscreen_canvas, self.font, 80, 9, self.yellow, '1st and 10')
         # Away
         graphics.DrawText(offscreen_canvas, self.font, 2, 20, color,
                           self.format_team_abbr(scoreboard.away_team.city_abbr) + ' ' + scoreboard.away_team.score)
