@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from samplebase import SampleBase
 from rgbmatrix import graphics
+from PIL import Image
 import time
 import platform
 from espn_runner import call_espn_api_and_load_scoreboard
@@ -28,12 +29,18 @@ class GraphicsRunner(SampleBase):
             team_abbr += ' '
         return team_abbr
 
+    def draw_image(self, offscreen_canvas):
+        image = Image.open('images/nfl.png').convert('RGB')
+        image.thumbnail((16, 16), Image.ANTIALIAS)
+        offscreen_canvas.SetImage(image, 70)
+        print()
+
     def write_scoreboard(self, offscreen_canvas, color, scoreboard):
         # Home
         graphics.DrawText(offscreen_canvas, self.medium_font, 2, 9, color,
                           self.format_team_abbr(scoreboard.home_team.city_abbr) + ' ' + scoreboard.home_team.score)
         graphics.DrawText(offscreen_canvas, self.smallest_font, 31, 9, self.white, scoreboard.home_team.record)
-        graphics.DrawText(offscreen_canvas, self.medium_font, 70, 9, self.yellow, '1st and 10')
+        # graphics.DrawText(offscreen_canvas, self.medium_font, 70, 9, self.yellow, '1st and 10')
         # Away
         graphics.DrawText(offscreen_canvas, self.medium_font, 2, 20, color,
                           self.format_team_abbr(scoreboard.away_team.city_abbr) + ' ' + scoreboard.away_team.score)
