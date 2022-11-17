@@ -17,6 +17,8 @@ class GraphicsRunner(SampleBase):
         self.smallest_font.LoadFont("font/4x6.bdf")
         self.medium_font = graphics.Font()
         self.medium_font.LoadFont("font/5x7.bdf")
+        self.large_font = graphics.Font()
+        self.large_font.LoadFont("font/6x10.bdf")
         self.green = graphics.Color(0, 255, 0)
         self.blue = graphics.Color(0, 255, 213)
         self.yellow = graphics.Color(255, 255, 0)
@@ -68,7 +70,7 @@ class GraphicsRunner(SampleBase):
             elif scoreboard.gameclock.time_state == TimeState.SCHEDULED:
                 graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, scoreboard.gameclock.start_time)
                 self.draw_team_image(offscreen_canvas, 'images/colts.png', 64)
-                graphics.DrawText(offscreen_canvas, self.medium_font, 96, 16, self.yellow, '@')
+                graphics.DrawText(offscreen_canvas, self.large_font, 96, 16, self.yellow, '@')
                 self.draw_team_image(offscreen_canvas, 'images/eagles.png', 104)
         if scoreboard.gameclock.time_state == TimeState.SCHEDULED or \
                 (len(scoreboard.home_team.record) < 5 and len(scoreboard.away_team.record) < 5):
