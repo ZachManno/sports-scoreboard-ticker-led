@@ -4,6 +4,8 @@ from Scoreboard import Team
 from Scoreboard import TimeState
 from Scoreboard import GameClock
 import json
+import datetime
+import calendar
 
 
 def parse_espn_api_json(sport: str, espn_game_json: dict, espn_sport_json: dict):
@@ -75,7 +77,15 @@ def parse_gameclock(sport, espn_game_json: dict):
         time_state = TimeState.FINAL
     elif game_status_desc == 'STATUS_SCHEDULED':
         time_state = TimeState.SCHEDULED
-        start_time = game_status.get('shortDetail').split(' - ', 1)[1][:-3] # 11/21 - 8:15 PM EST
+        # Short detail: 11/21 - 8:15 PM EST
+        time_in_est = game_status.get('shortDetail').split(' - ', 1)[1][:-3] # 8:15 PM
+        month_and_day = game_status.get('shortDetail').split(' - ', 1)[0]
+        month = month_and_day.split('/', 1)[0]
+        day = month_and_day.split('/', 1)[1]
+        current_year = str(datetime.date.today().year)
+        date_obj = datetime.datetime.strptime(current_year + '-' + month + '-' + day, "%Y-%m-%d")
+        day_name = calendar.day_name[date_obj.weekday()][:3]  # 'Wed'
+        start_time = day_name + ' ' + time_in_est
     else:
         print("Unknown game_status_desc: " + game_status_desc)
     if time_state:
