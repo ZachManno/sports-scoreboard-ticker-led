@@ -31,7 +31,7 @@ class GraphicsRunner(SampleBase):
 
     def draw_image(self, offscreen_canvas):
         image = Image.open('images/nfl-2.png').convert('RGB')
-        image.thumbnail((18, 18), Image.ANTIALIAS)
+        image.thumbnail((17, 17), Image.ANTIALIAS)
         offscreen_canvas.SetImage(image, 50)
         print()
 
@@ -59,13 +59,6 @@ class GraphicsRunner(SampleBase):
         offscreen_canvas = self.matrix.CreateFrameCanvas()
         self.matrix.brightness = 50
         # print('brightness: ' + str(self.matrix.brightness))
-        font = graphics.Font()
-        font.LoadFont("font/5x7.bdf")
-
-        green = graphics.Color(0, 255, 0)
-        #graphics.DrawCircle(canvas, 15, 15, 10, green)
-        blue = graphics.Color(0, 255, 213)
-        yellow = graphics.Color(255, 255, 0)
 
         while True:
             for scoreboard in call_espn_api_and_load_scoreboard():
