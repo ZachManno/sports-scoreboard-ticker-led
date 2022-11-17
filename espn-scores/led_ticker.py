@@ -31,8 +31,8 @@ class GraphicsRunner(SampleBase):
 
     def draw_image(self, offscreen_canvas):
         image = Image.open('images/nfl.png').convert('RGB')
-        image.thumbnail((16, 16), Image.ANTIALIAS)
-        offscreen_canvas.SetImage(image, 70)
+        image.thumbnail((24, 24), Image.ANTIALIAS)
+        offscreen_canvas.SetImage(image, 80)
         print()
 
     def write_scoreboard(self, offscreen_canvas, color, scoreboard):
