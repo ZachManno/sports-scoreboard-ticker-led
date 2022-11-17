@@ -39,7 +39,7 @@ class GraphicsRunner(SampleBase):
         # Home
         graphics.DrawText(offscreen_canvas, self.medium_font, 2, 9, color,
                           self.format_team_abbr(scoreboard.home_team.city_abbr) + ' ' + '28')
-        graphics.DrawText(offscreen_canvas, self.smallest_font, 34, 9, self.white, scoreboard.home_team.record)
+        graphics.DrawText(offscreen_canvas, self.smallest_font, 34, 9, self.white, '10-3')
         # graphics.DrawText(offscreen_canvas, self.medium_font, 70, 9, self.yellow, '1st and 10')
         # Away
         graphics.DrawText(offscreen_canvas, self.medium_font, 2, 20, color,
@@ -51,7 +51,7 @@ class GraphicsRunner(SampleBase):
             elif scoreboard.gameclock.time_state == TimeState.LIVE:
                 gameclock = quarter_map[scoreboard.gameclock.live_period] + ' ' + scoreboard.gameclock.live_clock
                 graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, gameclock)
-        if len(scoreboard.home_team.record) < 4 and len(scoreboard.away_team.record) < 4:
+        if len(scoreboard.home_team.record) < 5 and len(scoreboard.away_team.record) < 5:
             self.draw_image(offscreen_canvas)
 
     def run(self):
