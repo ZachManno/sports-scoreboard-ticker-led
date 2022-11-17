@@ -31,7 +31,7 @@ class GraphicsRunner(SampleBase):
 
     def draw_image(self, offscreen_canvas):
         image = Image.open('images/nfl-2.png').convert('RGB')
-        image.thumbnail((18, 18), Image.ANTIALIAS)
+        image.thumbnail((20, 20), Image.ANTIALIAS)
         offscreen_canvas.SetImage(image, 46)
         print()
 
