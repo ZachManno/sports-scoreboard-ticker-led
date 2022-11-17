@@ -67,8 +67,8 @@ class GraphicsRunner(SampleBase):
                 graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, gameclock)
             elif scoreboard.gameclock.time_state == TimeState.SCHEDULED:
                 graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, scoreboard.gameclock.start_time)
-                self.draw_team_image(offscreen_canvas, 'images/colts.png', 68)
-                self.draw_team_image(offscreen_canvas, 'images/eagles.png', 102)
+                self.draw_team_image(offscreen_canvas, 'images/colts.png', 64)
+                self.draw_team_image(offscreen_canvas, 'images/eagles.png', 98)
         if scoreboard.gameclock.time_state == TimeState.SCHEDULED or \
                 (len(scoreboard.home_team.record) < 5 and len(scoreboard.away_team.record) < 5):
             self.draw_nfl_image(offscreen_canvas)
