@@ -20,7 +20,7 @@ class GraphicsRunner(SampleBase):
         self.large_font = graphics.Font()
         self.large_font.LoadFont("font/6x10.bdf")
         self.huge_font = graphics.Font()
-        self.huge_font.LoadFont("font/7x130.bdf")
+        self.huge_font.LoadFont("font/7x13O.bdf")
         self.green = graphics.Color(0, 255, 0)
         self.blue = graphics.Color(0, 255, 213)
         self.yellow = graphics.Color(255, 255, 0)
