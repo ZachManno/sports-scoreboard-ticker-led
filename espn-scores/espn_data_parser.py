@@ -75,7 +75,7 @@ def parse_gameclock(sport, espn_game_json: dict):
         time_state = TimeState.FINAL
     elif game_status_desc == 'STATUS_SCHEDULED':
         time_state = TimeState.SCHEDULED
-        start_time = game_status.get('shortDetail')
+        start_time = game_status.get('shortDetail').split(' - ', 1) # 11/21 - 8:15 PM EST
     else:
         print("Unknown game_status_desc: " + game_status_desc)
     if time_state:
