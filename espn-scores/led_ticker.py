@@ -71,6 +71,7 @@ class GraphicsRunner(SampleBase):
                     self.write_scoreboard(offscreen_canvas, self.blue, scoreboard)
                 else:
                     self.write_scoreboard(offscreen_canvas, self.green, scoreboard)
+                self.draw_image(offscreen_canvas)
 
                 rotation = rotation + 1
                 # Don't let rotation count get too high!
