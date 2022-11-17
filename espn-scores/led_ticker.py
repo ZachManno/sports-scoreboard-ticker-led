@@ -61,7 +61,8 @@ class GraphicsRunner(SampleBase):
                 graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, gameclock)
             elif scoreboard.gameclock.time_state == TimeState.SCHEDULED:
                 graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, scoreboard.gameclock.start_time)
-        if len(scoreboard.home_team.record) < 5 and len(scoreboard.away_team.record) < 5:
+        if scoreboard.gameclock.time_state == TimeState.SCHEDULED or \
+                (len(scoreboard.home_team.record) < 5 and len(scoreboard.away_team.record) < 5):
             self.draw_image(offscreen_canvas)
 
     def run(self):
