@@ -29,10 +29,16 @@ class GraphicsRunner(SampleBase):
             team_abbr += ' '
         return team_abbr
 
-    def draw_image(self, offscreen_canvas):
+    def draw_nfl_image(self, offscreen_canvas):
         image = Image.open('images/nfl-2.png').convert('RGB')
         image.thumbnail((16, 16), Image.ANTIALIAS)
         offscreen_canvas.SetImage(image, 50)
+        print()
+
+    def draw_team_image(self, offscreen_canvas, image_location, x_axis_position):
+        image = Image.open(image_location).convert('RGB')
+        image.thumbnail((28, 28), Image.ANTIALIAS)
+        offscreen_canvas.SetImage(image, x_axis_position)
         print()
 
     def write_scoreboard(self, offscreen_canvas, color, scoreboard):
@@ -61,9 +67,11 @@ class GraphicsRunner(SampleBase):
                 graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, gameclock)
             elif scoreboard.gameclock.time_state == TimeState.SCHEDULED:
                 graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, scoreboard.gameclock.start_time)
+                self.draw_team_image(offscreen_canvas, 'images/colts.png', 68)
+                self.draw_team_image(offscreen_canvas, 'images/eagles.png', 102)
         if scoreboard.gameclock.time_state == TimeState.SCHEDULED or \
                 (len(scoreboard.home_team.record) < 5 and len(scoreboard.away_team.record) < 5):
-            self.draw_image(offscreen_canvas)
+            self.draw_nfl_image(offscreen_canvas)
 
     def run(self):
         rotation = 0
