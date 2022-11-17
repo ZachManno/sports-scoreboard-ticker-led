@@ -84,8 +84,8 @@ def parse_gameclock(sport, espn_game_json: dict):
         day = month_and_day.split('/', 1)[1]
         current_year = str(datetime.date.today().year)
         date_obj = datetime.datetime.strptime(current_year + '-' + month + '-' + day, "%Y-%m-%d")
-        day_name = calendar.day_name[date_obj.weekday()][:3]  # 'Wed'
-        start_time = day_name + ' ' + time_in_est
+        day_name = calendar.day_name[date_obj.weekday()][:3].upper()  # 'SUN'
+        start_time = time_in_est + ' ' + day_name
     else:
         print("Unknown game_status_desc: " + game_status_desc)
     if time_state:
