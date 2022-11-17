@@ -71,7 +71,7 @@ class GraphicsRunner(SampleBase):
                 graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, scoreboard.gameclock.start_time)
                 self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 66)
                 graphics.DrawText(offscreen_canvas, self.huge_font, 96, 16, self.yellow, '@')
-                self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home.city_abbr.upper()}.png', 104)
+                self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 104)
         if scoreboard.gameclock.time_state == TimeState.SCHEDULED or \
                 (len(scoreboard.home_team.record) < 5 and len(scoreboard.away_team.record) < 5):
             self.draw_nfl_image(offscreen_canvas)
