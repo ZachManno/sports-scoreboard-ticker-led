@@ -37,16 +37,19 @@ class GraphicsRunner(SampleBase):
 
     def write_scoreboard(self, offscreen_canvas, color, scoreboard):
         # Home
+        home_str = self.format_team_abbr(scoreboard.home_team.city_abbr)
         if scoreboard.gameclock.time_state != TimeState.SCHEDULED:
-            graphics.DrawText(offscreen_canvas, self.medium_font, 2, 9, color,
-                          self.format_team_abbr(scoreboard.home_team.city_abbr) + ' ' + scoreboard.home_team.score)
+            home_str += ' ' + scoreboard.home_team.score
+        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 9, color, home_str)
         graphics.DrawText(offscreen_canvas, self.smallest_font, 33, 9, self.white, scoreboard.home_team.record)
+
         # graphics.DrawText(offscreen_canvas, self.medium_font, 70, 9, self.yellow, '1st and 10')
 
         # Away
+        away_str = self.format_team_abbr(scoreboard.away_team.city_abbr)
         if scoreboard.gameclock.time_state != TimeState.SCHEDULED:
-            graphics.DrawText(offscreen_canvas, self.medium_font, 2, 20, color,
-                          self.format_team_abbr(scoreboard.away_team.city_abbr) + ' ' + scoreboard.away_team.score)
+            away_str += ' ' + scoreboard.away_team.score
+        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 20, color,away_str)
         graphics.DrawText(offscreen_canvas, self.smallest_font, 33, 20, self.white, scoreboard.away_team.record)
         if scoreboard.gameclock.time_state:
             if scoreboard.gameclock.time_state == TimeState.FINAL:
