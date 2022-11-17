@@ -44,23 +44,22 @@ class GraphicsRunner(SampleBase):
         offscreen_canvas.SetImage(image, x_axis_position)
 
     def write_scoreboard(self, offscreen_canvas, color, scoreboard):
-        # Home
-        home_str = self.format_team_abbr(scoreboard.home_team.city_abbr)
         record_location = 20
-        if scoreboard.gameclock.time_state != TimeState.SCHEDULED:
-            home_str += ' ' + scoreboard.home_team.score
-            record_location = 33
-        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 9, color, home_str)
-        graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 9, self.white, scoreboard.home_team.record)
-
-        # graphics.DrawText(offscreen_canvas, self.medium_font, 70, 9, self.yellow, '1st and 10')
-
         # Away
         away_str = self.format_team_abbr(scoreboard.away_team.city_abbr)
         if scoreboard.gameclock.time_state != TimeState.SCHEDULED:
             away_str += ' ' + scoreboard.away_team.score
-        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 20, color,away_str)
-        graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 20, self.white, scoreboard.away_team.record)
+        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 9, color, away_str)
+        graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 9, self.white, scoreboard.away_team.record)
+
+        # Home
+        home_str = self.format_team_abbr(scoreboard.home_team.city_abbr)
+        if scoreboard.gameclock.time_state != TimeState.SCHEDULED:
+            home_str += ' ' + scoreboard.home_team.score
+            record_location = 33
+        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 20, color, home_str)
+        graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 20, self.white, scoreboard.home_team.record)
+
         if scoreboard.gameclock.time_state:
             if scoreboard.gameclock.time_state == TimeState.FINAL:
                 graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, 'FINAL')
