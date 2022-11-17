@@ -37,13 +37,11 @@ class GraphicsRunner(SampleBase):
         image = Image.open('images/nfl-2.png').convert('RGB')
         image.thumbnail((16, 16), Image.ANTIALIAS)
         offscreen_canvas.SetImage(image, 50)
-        print()
 
     def draw_team_image(self, offscreen_canvas, image_location, x_axis_position):
         image = Image.open(image_location).convert('RGB')
         image.thumbnail((24, 24), Image.ANTIALIAS)
         offscreen_canvas.SetImage(image, x_axis_position)
-        print()
 
     def write_scoreboard(self, offscreen_canvas, color, scoreboard):
         # Home
@@ -85,6 +83,7 @@ class GraphicsRunner(SampleBase):
         # print('brightness: ' + str(self.matrix.brightness))
 
         while True:
+            print()
             for scoreboard in call_espn_api_and_load_scoreboard():
                 if rotation % 2 == 0:
                     self.write_scoreboard(offscreen_canvas, self.blue, scoreboard)
