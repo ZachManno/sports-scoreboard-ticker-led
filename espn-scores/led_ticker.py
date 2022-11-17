@@ -37,7 +37,7 @@ class GraphicsRunner(SampleBase):
 
     def draw_team_image(self, offscreen_canvas, image_location, x_axis_position):
         image = Image.open(image_location).convert('RGB')
-        image.thumbnail((28, 28), Image.ANTIALIAS)
+        image.thumbnail((24, 24), Image.ANTIALIAS)
         offscreen_canvas.SetImage(image, x_axis_position)
         print()
 
