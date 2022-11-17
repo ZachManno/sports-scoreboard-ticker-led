@@ -39,12 +39,12 @@ class GraphicsRunner(SampleBase):
         # Home
         graphics.DrawText(offscreen_canvas, self.medium_font, 2, 9, color,
                           self.format_team_abbr(scoreboard.home_team.city_abbr) + ' ' + '28')
-        graphics.DrawText(offscreen_canvas, self.smallest_font, 32, 9, self.white, '10-3')
+        graphics.DrawText(offscreen_canvas, self.smallest_font, 33, 9, self.white, '10-3')
         # graphics.DrawText(offscreen_canvas, self.medium_font, 70, 9, self.yellow, '1st and 10')
         # Away
         graphics.DrawText(offscreen_canvas, self.medium_font, 2, 20, color,
                           self.format_team_abbr(scoreboard.away_team.city_abbr) + ' ' + '17')
-        graphics.DrawText(offscreen_canvas, self.smallest_font, 32, 20, self.white, scoreboard.away_team.record)
+        graphics.DrawText(offscreen_canvas, self.smallest_font, 33, 20, self.white, scoreboard.away_team.record)
         if scoreboard.gameclock.time_state:
             if scoreboard.gameclock.time_state == TimeState.FINAL:
                 graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, 'FINAL')
