@@ -38,7 +38,7 @@ class GraphicsRunner(SampleBase):
     def write_scoreboard(self, offscreen_canvas, color, scoreboard):
         # Home
         home_str = self.format_team_abbr(scoreboard.home_team.city_abbr)
-        record_location = 17
+        record_location = 20
         if scoreboard.gameclock.time_state != TimeState.SCHEDULED:
             home_str += ' ' + scoreboard.home_team.score
             record_location = 33
