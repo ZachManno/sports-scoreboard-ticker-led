@@ -49,6 +49,7 @@ class GraphicsRunner(SampleBase):
         away_str = self.format_team_abbr(scoreboard.away_team.city_abbr)
         if scoreboard.gameclock.time_state != TimeState.SCHEDULED:
             away_str += ' ' + scoreboard.away_team.score
+            record_location = 33
         graphics.DrawText(offscreen_canvas, self.medium_font, 2, 9, color, away_str)
         graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 9, self.white, scoreboard.away_team.record)
 
