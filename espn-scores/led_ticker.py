@@ -138,6 +138,7 @@ class GraphicsRunner(SampleBase):
                 else:
                     self.write_scoreboard(offscreen_canvas, self.green, scoreboard)
 
+                # Rotates the colors between blue and green to  give some pizazz
                 rotation = rotation + 1
                 # Don't let rotation count get too high!
                 if rotation == 90000:
