@@ -101,7 +101,7 @@ class GraphicsRunner(SampleBase):
 
         # Write down and distance if applicable
         if scoreboard.gameclock.down_and_distance:
-            graphics.DrawText(offscreen_canvas, self.large_font, 72, 8, self.yellow, scoreboard.gameclock.down_and_distance)
+            graphics.DrawText(offscreen_canvas, self.large_font, 72, 16, self.yellow, scoreboard.gameclock.down_and_distance)
 
     def write_final_scoreboard(self, offscreen_canvas, color, scoreboard):
         record_location = 33
