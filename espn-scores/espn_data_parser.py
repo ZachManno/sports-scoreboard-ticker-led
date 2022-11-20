@@ -55,7 +55,7 @@ def get_playoff_record(espn_game_json, is_home: bool):
 
 
 def parse_gameclock(sport, espn_game_json: dict):
-    down_and_distance_text = None
+    down_distance_text = None
     if espn_game_json['competitions'][0].get('situation'):
         down_distance_text = espn_game_json['competitions'][0].get('situation').get('shortDownDistanceText')
         # print(down_distance_text)
@@ -94,5 +94,5 @@ def parse_gameclock(sport, espn_game_json: dict):
     else:
         print("Unknown game_status_desc: " + game_status_desc) # New one: STATUS_END_PERIOD
     if time_state:
-        return GameClock(time_state, start_time, live_clock, live_period, down_and_distance_text)
+        return GameClock(time_state, start_time, live_clock, live_period, down_distance_text)
     return None
