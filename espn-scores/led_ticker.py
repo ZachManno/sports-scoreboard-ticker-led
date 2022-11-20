@@ -59,11 +59,14 @@ class GraphicsRunner(SampleBase):
                           self.format_team_abbr(scoreboard.away_team.city_abbr))
         graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 9, self.white,
                           scoreboard.away_team.record)
+        self.write_team_and_record(offscreen_canvas, color,
+                                   self.format_team_abbr(scoreboard.away_team.city_abbr),
+                                   record_location, 9, scoreboard.away_team.record)
+
         # Write home team and record
-        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 20, color,
-                          self.format_team_abbr(scoreboard.home_team.city_abbr))
-        graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 20, self.white,
-                          scoreboard.home_team.record)
+        self.write_team_and_record(offscreen_canvas, color,
+                                   self.format_team_abbr(scoreboard.home_team.city_abbr),
+                                   record_location, 20, scoreboard.home_team.record)
 
         # Write start time
         graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, scoreboard.gameclock.start_time)
@@ -79,16 +82,16 @@ class GraphicsRunner(SampleBase):
     def write_live_scoreboard(self, offscreen_canvas, color, scoreboard):
         record_location = 33
         # Write away team, score and record
-        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 9, color,
-                          self.format_team_abbr(scoreboard.away_team.city_abbr) + ' ' + scoreboard.away_team.score)
-        graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 9, self.white,
-                          scoreboard.away_team.record)
+        self.write_team_and_record(offscreen_canvas, color,
+                                   self.format_team_abbr(
+                                       scoreboard.away_team.city_abbr) + ' ' + scoreboard.away_team.score,
+                                   record_location, 9, scoreboard.away_team.record)
 
         # Write home team, score and record
-        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 20, color,
-                          self.format_team_abbr(scoreboard.home_team.city_abbr) + ' ' + scoreboard.home_team.score)
-        graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 20, self.white,
-                          scoreboard.home_team.record)
+        self.write_team_and_record(offscreen_canvas, color,
+                                   self.format_team_abbr(
+                                       scoreboard.home_team.city_abbr) + ' ' + scoreboard.home_team.score,
+                                   record_location, 20, scoreboard.home_team.record)
 
         # Write live score and clock
         gameclock = QUARTER_MAP[scoreboard.gameclock.live_period] + ' ' + scoreboard.gameclock.live_clock
