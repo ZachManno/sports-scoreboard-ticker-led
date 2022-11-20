@@ -8,7 +8,8 @@ from espn_runner import call_espn_api_and_load_scoreboard
 from Scoreboard import TimeState
 from threading import Timer
 
-quarter_map = {1: '1ST', 2: '2ND', 3: '3RD', 4: '4TH'}
+QUARTER_MAP = {1: '1ST', 2: '2ND', 3: '3RD', 4: '4TH'}
+BEGINNING_COLUMN = 2
 
 
 class GraphicsRunner(SampleBase):
@@ -38,43 +39,87 @@ class GraphicsRunner(SampleBase):
         image.thumbnail((16, 16), Image.ANTIALIAS)
         offscreen_canvas.SetImage(image, 50)
 
+    def draw_nfl_image_if_space(self, offscreen_canvas, scoreboard):
+        if len(scoreboard.home_team.record) < 5 and len(scoreboard.away_team.record) < 5:
+            self.draw_nfl_image(offscreen_canvas)
+
     def draw_team_image(self, offscreen_canvas, image_location, x_axis_position):
         image = Image.open(image_location).convert('RGB')
         image.thumbnail((24, 24), Image.ANTIALIAS)
         offscreen_canvas.SetImage(image, x_axis_position)
 
-    def write_scoreboard(self, offscreen_canvas, color, scoreboard):
+    def write_team_and_record(self, offscreen_canvas, color, team_abbr_and_possible_score, record_column, record):
+        graphics.DrawText(offscreen_canvas, self.medium_font, BEGINNING_COLUMN, 9, color, team_abbr_and_possible_score)
+        graphics.DrawText(offscreen_canvas, self.smallest_font, record_column, 9, self.white, record)
+
+    def write_scheduled_scoreboard(self, offscreen_canvas, color, scoreboard):
         record_location = 20
-        # Away
-        away_str = self.format_team_abbr(scoreboard.away_team.city_abbr)
-        if scoreboard.gameclock.time_state != TimeState.SCHEDULED:
-            away_str += ' ' + scoreboard.away_team.score
-            record_location = 33
-        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 9, color, away_str)
-        graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 9, self.white, scoreboard.away_team.record)
+        # Write away team and record
+        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 9, color,
+                          self.format_team_abbr(scoreboard.away_team.city_abbr))
+        graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 9, self.white,
+                          scoreboard.away_team.record)
+        # Write home team and record
+        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 20, color,
+                          self.format_team_abbr(scoreboard.home_team.city_abbr))
+        graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 20, self.white,
+                          scoreboard.home_team.record)
 
-        # Home
-        home_str = self.format_team_abbr(scoreboard.home_team.city_abbr)
-        if scoreboard.gameclock.time_state != TimeState.SCHEDULED:
-            home_str += ' ' + scoreboard.home_team.score
-            record_location = 33
-        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 20, color, home_str)
-        graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 20, self.white, scoreboard.home_team.record)
+        # Write start time
+        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, scoreboard.gameclock.start_time)
 
-        if scoreboard.gameclock.time_state:
-            if scoreboard.gameclock.time_state == TimeState.FINAL:
-                graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, 'FINAL')
-            elif scoreboard.gameclock.time_state == TimeState.LIVE:
-                gameclock = quarter_map[scoreboard.gameclock.live_period] + ' ' + scoreboard.gameclock.live_clock
-                graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, gameclock)
-            elif scoreboard.gameclock.time_state == TimeState.SCHEDULED:
-                graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, scoreboard.gameclock.start_time)
-                self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 66)
-                graphics.DrawText(offscreen_canvas, self.huge_font, 94, 16, self.yellow, '@')
-                self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 104)
-        if scoreboard.gameclock.time_state == TimeState.SCHEDULED or \
-                (len(scoreboard.home_team.record) < 5 and len(scoreboard.away_team.record) < 5):
-            self.draw_nfl_image(offscreen_canvas)
+        # Write home and away logos
+        self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 66)
+        graphics.DrawText(offscreen_canvas, self.huge_font, 94, 16, self.yellow, '@')
+        self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 104)
+
+        # Write NFL logo in top right
+        self.draw_nfl_image(offscreen_canvas)
+
+    def write_live_scoreboard(self, offscreen_canvas, color, scoreboard):
+        record_location = 33
+        # Write away team, score and record
+        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 9, color,
+                          self.format_team_abbr(scoreboard.away_team.city_abbr) + ' ' + scoreboard.away_team.score)
+        graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 9, self.white,
+                          scoreboard.away_team.record)
+
+        # Write home team, score and record
+        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 20, color,
+                          self.format_team_abbr(scoreboard.home_team.city_abbr) + ' ' + scoreboard.home_team.score)
+        graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 20, self.white,
+                          scoreboard.home_team.record)
+
+        # Write live score and clock
+        gameclock = QUARTER_MAP[scoreboard.gameclock.live_period] + ' ' + scoreboard.gameclock.live_clock
+        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, gameclock)
+
+        self.draw_nfl_image_if_space(offscreen_canvas, scoreboard)
+
+    def write_final_scoreboard(self, offscreen_canvas, color, scoreboard):
+        record_location = 33
+        # Write away team, score and record
+        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 9, color,
+                          self.format_team_abbr(scoreboard.away_team.city_abbr) + ' ' + scoreboard.away_team.score)
+        graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 9, self.white,
+                          scoreboard.away_team.record)
+        # Write home team, score and record
+        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 20, color,
+                          self.format_team_abbr(scoreboard.home_team.city_abbr) + scoreboard.home_team.score)
+        graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 20, self.white,
+                          scoreboard.home_team.record)
+        # Write FINAL
+        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, 'FINAL')
+
+        self.draw_nfl_image_if_space(offscreen_canvas, scoreboard)
+
+    def write_scoreboard(self, offscreen_canvas, color, scoreboard):
+        if scoreboard.gameclock.time_state == TimeState.SCHEDULED:
+            self.write_scheduled_scoreboard(offscreen_canvas, color, scoreboard)
+        elif scoreboard.gameclock.time_state == TimeState.LIVE:
+            self.write_live_scoreboard(offscreen_canvas, color, scoreboard)
+        else:
+            self.write_final_scoreboard(offscreen_canvas, color, scoreboard)
 
     def run(self):
         rotation = 0
