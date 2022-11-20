@@ -99,6 +99,10 @@ class GraphicsRunner(SampleBase):
 
         self.draw_nfl_image_if_space(offscreen_canvas, scoreboard)
 
+        # Write down and distance if applicable
+        if scoreboard.gameclock.down_and_distance:
+            graphics.DrawText(offscreen_canvas, self.large_font, 76, 24, self.yellow, scoreboard.gameclock.down_and_distance)
+
     def write_final_scoreboard(self, offscreen_canvas, color, scoreboard):
         record_location = 33
         # Write away team, score and record

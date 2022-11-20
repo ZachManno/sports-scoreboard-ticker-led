@@ -55,6 +55,11 @@ def get_playoff_record(espn_game_json, is_home: bool):
 
 
 def parse_gameclock(sport, espn_game_json: dict):
+    down_and_distance_text = None
+    if espn_game_json['competitions'][0].get('situation'):
+        down_distance_text = espn_game_json['competitions'][0].get('situation').get('shortDownDistanceText')
+        # print(down_distance_text)
+    # print(json.dumps(espn_game_json['competitions'][0]['situation']['shortDownDistanceText'])) #competitions competitors situation shortDownDistanceText
     game_status = espn_game_json.get('status').get('type')
     game_status_desc = game_status.get('name')
 
@@ -65,7 +70,7 @@ def parse_gameclock(sport, espn_game_json: dict):
     live_clock = None
     live_period = None
     start_time = None
-    if game_status_desc == 'STATUS_IN_PROGRESS' or game_status_desc == 'STATUS_HALFTIME':
+    if game_status_desc == 'STATUS_IN_PROGRESS' or game_status_desc == 'STATUS_HALFTIME' or game_status_desc == 'STATUS_END_PERIOD':
         time_state = TimeState.LIVE
         live_clock = espn_game_json.get('status').get('displayClock')
         live_period = espn_game_json.get('status').get('period')
@@ -87,7 +92,7 @@ def parse_gameclock(sport, espn_game_json: dict):
         day_name = calendar.day_name[date_obj.weekday()][:3].upper()  # 'SUN'
         start_time = time_in_est + day_name
     else:
-        print("Unknown game_status_desc: " + game_status_desc)
+        print("Unknown game_status_desc: " + game_status_desc) # New one: STATUS_END_PERIOD
     if time_state:
-        return GameClock(time_state, start_time, live_clock, live_period)
+        return GameClock(time_state, start_time, live_clock, live_period, down_and_distance_text)
     return None

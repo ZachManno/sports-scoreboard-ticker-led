@@ -21,11 +21,12 @@ class TimeState(Enum):
 
 class GameClock:
     def __init__(self, time_state: TimeState, start_time: str = None,
-                 live_clock: str = None, live_period: str = None):
+                 live_clock: str = None, live_period: str = None, down_and_distance: str = None):
         self.time_state = time_state
         self.start_time = start_time
         self.live_clock = live_clock
         self.live_period = live_period
+        self.down_and_distance = down_and_distance
 
     @property
     def time_state(self):
@@ -59,9 +60,17 @@ class GameClock:
     def live_period(self, value):
         self._live_clock_time = value
 
+    @property
+    def down_and_distance(self):
+        return self._down_and_distance
+
+    @down_and_distance.setter
+    def down_and_distance(self, value):
+        self._down_and_distance = value
+
     def __str__(self):
         return str({'time_state': self.time_state, 'start_time': self.start_time,
-                    'live_clock': self.live_clock, 'live_period': self.live_period})
+                    'live_clock': self.live_clock, 'live_period': self.live_period, 'down_and_distance': self.down_and_distance})
 
 
 class Team:
