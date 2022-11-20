@@ -48,9 +48,9 @@ class GraphicsRunner(SampleBase):
         image.thumbnail((24, 24), Image.ANTIALIAS)
         offscreen_canvas.SetImage(image, x_axis_position)
 
-    def write_team_and_record(self, offscreen_canvas, color, team_abbr_and_possible_score, record_column, record):
-        graphics.DrawText(offscreen_canvas, self.medium_font, BEGINNING_COLUMN, 9, color, team_abbr_and_possible_score)
-        graphics.DrawText(offscreen_canvas, self.smallest_font, record_column, 9, self.white, record)
+    def write_team_and_record(self, offscreen_canvas, color, team_abbr_and_possible_score, record_column, record_row, record):
+        graphics.DrawText(offscreen_canvas, self.medium_font, BEGINNING_COLUMN, record_row, color, team_abbr_and_possible_score)
+        graphics.DrawText(offscreen_canvas, self.smallest_font, record_column, record_row, self.white, record)
 
     def write_scheduled_scoreboard(self, offscreen_canvas, color, scoreboard):
         record_location = 20
@@ -99,15 +99,15 @@ class GraphicsRunner(SampleBase):
     def write_final_scoreboard(self, offscreen_canvas, color, scoreboard):
         record_location = 33
         # Write away team, score and record
-        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 9, color,
-                          self.format_team_abbr(scoreboard.away_team.city_abbr) + ' ' + scoreboard.away_team.score)
-        graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 9, self.white,
-                          scoreboard.away_team.record)
+        self.write_team_and_record(offscreen_canvas, color,
+                                   self.format_team_abbr(scoreboard.away_team.city_abbr) + ' ' + scoreboard.away_team.score,
+                                   record_location, 9, scoreboard.away_team.record)
+
         # Write home team, score and record
-        graphics.DrawText(offscreen_canvas, self.medium_font, 2, 20, color,
-                          self.format_team_abbr(scoreboard.home_team.city_abbr) + scoreboard.home_team.score)
-        graphics.DrawText(offscreen_canvas, self.smallest_font, record_location, 20, self.white,
-                          scoreboard.home_team.record)
+        self.write_team_and_record(offscreen_canvas, color,
+                                   self.format_team_abbr(scoreboard.home_team.city_abbr) + ' ' + scoreboard.home_team.score,
+                                   record_location, 20, scoreboard.home_team.record)
+
         # Write FINAL
         graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, 'FINAL')
 
