@@ -94,7 +94,7 @@ class GraphicsRunner(SampleBase):
                                    record_location, 20, scoreboard.home_team.record)
 
         # Write live score and clock
-        gameclock = QUARTER_MAP[scoreboard.gameclock.live_period] + ' ' + scoreboard.gameclock.live_clock
+        gameclock = QUARTER_MAP.get(scoreboard.gameclock.live_period, '') + ' ' + scoreboard.gameclock.live_clock
         graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, gameclock)
 
         self.draw_nfl_image_if_space(offscreen_canvas, scoreboard)
