@@ -84,6 +84,8 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, 68, 31, 68, 30, self.dark_blue)  # blue endzone
         graphics.DrawLine(offscreen_canvas, 67, 31, 67, 30, self.dark_blue)  # blue endzone
         graphics.DrawLine(offscreen_canvas, 66, 31, 66, 28, self.yellow)  # goal post
+        graphics.DrawLine(offscreen_canvas, 64, 28, 64, 24, self.yellow)  # goal post
+        graphics.DrawLine(offscreen_canvas, 68, 28, 68, 25, self.yellow)  # goal post
 
         # Write NFL logo in top right
         self.draw_nfl_image(offscreen_canvas)
