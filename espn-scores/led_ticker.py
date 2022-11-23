@@ -182,6 +182,16 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, 65 + right_shift_goalpost, 28, 65 + right_shift_goalpost, 28, self.yellow)  # goal post right
         graphics.DrawLine(offscreen_canvas, 67 + right_shift_goalpost, 28, 67 + right_shift_goalpost, 28, self.yellow)  # goal post right
 
+        # White possession arrow left
+        graphics.DrawLine(offscreen_canvas, 95, 28, 95, 24, self.white)  # white midfield
+        graphics.DrawLine(offscreen_canvas, 94, 27, 94, 25, self.white)  # white midfield
+        graphics.DrawLine(offscreen_canvas, 93, 26, 93, 26, self.white)  # white midfield
+
+        # White possession arrow right
+        graphics.DrawLine(offscreen_canvas, 125, 28, 125, 24, self.white)  # white midfield
+        graphics.DrawLine(offscreen_canvas, 126, 27, 126, 25, self.white)  # white midfield
+        graphics.DrawLine(offscreen_canvas, 127, 26, 127, 26, self.white)  # white midfield
+
 
 # Main function
 if __name__ == "__main__":
