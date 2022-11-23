@@ -182,22 +182,22 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, 65 + right_shift_goalpost, 28, 65 + right_shift_goalpost, 28, self.yellow)  # goal post right
         graphics.DrawLine(offscreen_canvas, 67 + right_shift_goalpost, 28, 67 + right_shift_goalpost, 28, self.yellow)  # goal post right
 
-        # White possession arrow left
-        self.draw_possession_arrow(offscreen_canvas, 95, 'LEFT')
-        self.draw_possession_arrow(offscreen_canvas, 80, 'LEFT')
+        # self.draw_possession(offscreen_canvas, 96, 'LEFT') # 96 is fifty yardline
+        self.draw_possession(offscreen_canvas, 80, 'LEFT')  # 96 is fifty yardline
+        # self.draw_possession_arrow(offscreen_canvas, 110, 'RIGHT')
 
-        # White possession arrow right
-        self.draw_possession_arrow(offscreen_canvas, 110, 'RIGHT')
-
-    def draw_possession_arrow(self, offscreen_canvas, starting_position, pointing_direction='LEFT'):
+    def draw_possession(self, offscreen_canvas, starting_position, pointing_direction='LEFT'):
         if pointing_direction == 'LEFT':
-            graphics.DrawLine(offscreen_canvas, starting_position, 28, starting_position, 24, self.white)
-            graphics.DrawLine(offscreen_canvas, starting_position - 1, 27, starting_position - 1, 25, self.white)
-            graphics.DrawLine(offscreen_canvas, starting_position - 2, 26, starting_position - 2, 26, self.white)
+            arrow_starting_position = starting_position - 5
+            graphics.DrawLine(offscreen_canvas, arrow_starting_position, 28, arrow_starting_position, 24, self.white)
+            graphics.DrawLine(offscreen_canvas, arrow_starting_position - 1, 27, arrow_starting_position - 1, 25, self.white)
+            graphics.DrawLine(offscreen_canvas, arrow_starting_position - 2, 26, arrow_starting_position - 2, 26, self.white)
         elif pointing_direction == 'RIGHT':
-            graphics.DrawLine(offscreen_canvas, starting_position, 28, starting_position, 24, self.white)
-            graphics.DrawLine(offscreen_canvas, starting_position + 1, 27, starting_position + 1, 25, self.white)
-            graphics.DrawLine(offscreen_canvas, starting_position + 2, 26, starting_position + 2, 26, self.white)
+            arrow_starting_position = starting_position + 5
+            graphics.DrawLine(offscreen_canvas, arrow_starting_position, 28, arrow_starting_position, 24, self.white)
+            graphics.DrawLine(offscreen_canvas, arrow_starting_position + 1, 27, arrow_starting_position + 1, 25, self.white)
+            graphics.DrawLine(offscreen_canvas, arrow_starting_position + 2, 26, arrow_starting_position + 2, 26, self.white)
+
 
 # Main function
 if __name__ == "__main__":
