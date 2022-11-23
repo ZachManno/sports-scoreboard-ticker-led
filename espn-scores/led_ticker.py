@@ -24,7 +24,7 @@ class GraphicsRunner(SampleBase):
         self.huge_font.LoadFont("font/7x13.bdf")
         self.green = graphics.Color(0, 255, 0)
         self.blue = graphics.Color(0, 255, 213)
-        self.dark_blue = graphics.Color(0, 0, 204)
+        self.dark_blue = graphics.Color(0, 0, 255)
         self.yellow = graphics.Color(255, 255, 0)
         self.white = graphics.Color(255, 255, 255)
         super(GraphicsRunner, self).__init__(*args, **kwargs)
