@@ -89,6 +89,9 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, 65, 28, 65, 28, self.yellow)  # goal post left
         graphics.DrawLine(offscreen_canvas, 67, 28, 67, 28, self.yellow)  # goal post left
 
+        graphics.DrawLine(offscreen_canvas, 95, 31, 95, 30, self.white)  # white midfield
+        graphics.DrawLine(offscreen_canvas, 96, 31, 96, 30, self.white)  # white midfield
+
         right_shift_goalpost = 59
         right_shift_endzone_white = 53
         right_shift_endzone_blue = 56
