@@ -24,6 +24,7 @@ class GraphicsRunner(SampleBase):
         self.huge_font.LoadFont("font/7x13.bdf")
         self.green = graphics.Color(0, 255, 0)
         self.blue = graphics.Color(0, 255, 213)
+        self.dark_blue = graphics.Color(0, 0, 204)
         self.yellow = graphics.Color(255, 255, 0)
         self.white = graphics.Color(255, 255, 255)
         super(GraphicsRunner, self).__init__(*args, **kwargs)
@@ -80,8 +81,8 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, 70, 30, 121, 30, self.green)  # Green line at bottom of screen
         graphics.DrawLine(offscreen_canvas, 70, 31, 121, 31, self.green) # Green line at bottom of screen
         graphics.DrawLine(offscreen_canvas, 69, 31, 69, 30, self.white)  # two dots of white for endzone
-        graphics.DrawLine(offscreen_canvas, 68, 31, 68, 30, self.blue)  # blue endzone
-        graphics.DrawLine(offscreen_canvas, 67, 31, 67, 30, self.blue)  # blue endzone
+        graphics.DrawLine(offscreen_canvas, 68, 31, 68, 30, self.dark_blue)  # blue endzone
+        graphics.DrawLine(offscreen_canvas, 67, 31, 67, 30, self.dark_blue)  # blue endzone
 
         # Write NFL logo in top right
         self.draw_nfl_image(offscreen_canvas)
