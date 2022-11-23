@@ -204,6 +204,9 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, starting_position - 2, 28, starting_position - 1, 28, self.brown)
         graphics.DrawLine(offscreen_canvas, starting_position + 1, 28, starting_position + 2, 28, self.brown)
 
+        # Draw yardline
+        graphics.DrawText(offscreen_canvas, self.smallest_font, 26, starting_position - 2, self.blue, '15')
+
 
 # Main function
 if __name__ == "__main__":
