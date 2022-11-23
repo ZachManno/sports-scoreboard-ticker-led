@@ -184,7 +184,7 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, 67 + right_shift_goalpost, 28, 67 + right_shift_goalpost, 28, self.yellow)  # goal post right
 
         # self.draw_possession(offscreen_canvas, 96, 'LEFT') # 96 is fifty yardline
-        self.draw_possession(offscreen_canvas, 80, 'LEFT')  # 96 is fifty yardline
+        self.draw_possession(offscreen_canvas, 80, 'RIGHT')  # 96 is fifty yardline
         # self.draw_possession_arrow(offscreen_canvas, 110, 'RIGHT')
 
     def draw_possession(self, offscreen_canvas, starting_position, pointing_direction='LEFT'):
