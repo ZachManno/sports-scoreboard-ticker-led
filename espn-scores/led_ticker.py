@@ -79,7 +79,9 @@ class GraphicsRunner(SampleBase):
         # Test drawing field goal posts and green
         graphics.DrawLine(offscreen_canvas, 70, 30, 121, 30, self.green)  # Green line at bottom of screen
         graphics.DrawLine(offscreen_canvas, 70, 31, 121, 31, self.green) # Green line at bottom of screen
-        graphics.DrawLine(offscreen_canvas, 69, 31, 69, 30, self.white)  # Green line at bottom of screen
+        graphics.DrawLine(offscreen_canvas, 69, 31, 69, 30, self.white)  # two dots of white for endzone
+        graphics.DrawLine(offscreen_canvas, 68, 31, 68, 30, self.blue)  # blue endzone
+        graphics.DrawLine(offscreen_canvas, 67, 31, 67, 30, self.blue)  # blue endzone
 
         # Write NFL logo in top right
         self.draw_nfl_image(offscreen_canvas)
