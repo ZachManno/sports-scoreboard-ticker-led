@@ -77,6 +77,7 @@ class GraphicsRunner(SampleBase):
         # self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 104)
 
         # Test drawing field goal posts and green
+        graphics.DrawLine(offscreen_canvas, 70, 30, 121, 30, self.green)  # Green line at bottom of screen
         graphics.DrawLine(offscreen_canvas, 70, 31, 121, 31, self.green) # Green line at bottom of screen
 
         # Write NFL logo in top right
