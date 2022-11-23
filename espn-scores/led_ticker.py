@@ -78,31 +78,7 @@ class GraphicsRunner(SampleBase):
         # self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 104)
 
         # Test drawing field goal posts and green
-        graphics.DrawLine(offscreen_canvas, 70, 30, 121, 30, self.green)  # Green line at bottom of screen
-        graphics.DrawLine(offscreen_canvas, 70, 31, 121, 31, self.green) # Green line at bottom of screen
-        graphics.DrawLine(offscreen_canvas, 69, 31, 69, 30, self.white)  # two dots of white for endzone
-        graphics.DrawLine(offscreen_canvas, 68, 31, 68, 30, self.dark_blue)  # blue endzone
-        graphics.DrawLine(offscreen_canvas, 67, 31, 67, 30, self.dark_blue)  # blue endzone
-        graphics.DrawLine(offscreen_canvas, 66, 31, 66, 28, self.yellow)  # goal post left
-        graphics.DrawLine(offscreen_canvas, 64, 28, 64, 24, self.yellow)  # goal post left
-        graphics.DrawLine(offscreen_canvas, 68, 28, 68, 25, self.yellow)  # goal post left
-        graphics.DrawLine(offscreen_canvas, 65, 28, 65, 28, self.yellow)  # goal post left
-        graphics.DrawLine(offscreen_canvas, 67, 28, 67, 28, self.yellow)  # goal post left
-
-        graphics.DrawLine(offscreen_canvas, 95, 31, 95, 30, self.white)  # white midfield
-        graphics.DrawLine(offscreen_canvas, 96, 31, 96, 30, self.white)  # white midfield
-
-        right_shift_goalpost = 59
-        right_shift_endzone_white = 53
-        right_shift_endzone_blue = 56
-        graphics.DrawLine(offscreen_canvas, 69 + right_shift_endzone_white, 31, 69 + right_shift_endzone_white, 30, self.white)  # two dots of white for endzone
-        graphics.DrawLine(offscreen_canvas, 68 + right_shift_endzone_blue, 31, 68 + right_shift_endzone_blue, 30, self.dark_blue)  # blue endzone
-        graphics.DrawLine(offscreen_canvas, 68 + right_shift_endzone_blue - 1, 31, 68 + right_shift_endzone_blue - 1, 30, self.dark_blue)  # blue endzone
-        graphics.DrawLine(offscreen_canvas, 66 + right_shift_goalpost, 31, 66 + right_shift_goalpost, 28, self.yellow)  # goal post right
-        graphics.DrawLine(offscreen_canvas, 64 + right_shift_goalpost, 28, 64 + right_shift_goalpost, 24 + 1, self.yellow)  # goal post right, invert post
-        graphics.DrawLine(offscreen_canvas, 68 + right_shift_goalpost, 28, 68 + right_shift_goalpost, 25 - 1, self.yellow)  # goal post right, invert post
-        graphics.DrawLine(offscreen_canvas, 65 + right_shift_goalpost, 28, 65 + right_shift_goalpost, 28, self.yellow)  # goal post right
-        graphics.DrawLine(offscreen_canvas, 67 + right_shift_goalpost, 28, 67 + right_shift_goalpost, 28, self.yellow)  # goal post right
+        self.draw_football_field(offscreen_canvas)
 
         # Write NFL logo in top right
         self.draw_nfl_image(offscreen_canvas)
@@ -178,6 +154,33 @@ class GraphicsRunner(SampleBase):
                 offscreen_canvas = self.matrix.SwapOnVSync(offscreen_canvas)
                 offscreen_canvas = self.matrix.CreateFrameCanvas()
                 time.sleep(5)
+
+    def draw_football_field(self, offscreen_canvas):
+        graphics.DrawLine(offscreen_canvas, 70, 30, 121, 30, self.green)  # Green line at bottom of screen
+        graphics.DrawLine(offscreen_canvas, 70, 31, 121, 31, self.green) # Green line at bottom of screen
+        graphics.DrawLine(offscreen_canvas, 69, 31, 69, 30, self.white)  # two dots of white for endzone
+        graphics.DrawLine(offscreen_canvas, 68, 31, 68, 30, self.dark_blue)  # blue endzone
+        graphics.DrawLine(offscreen_canvas, 67, 31, 67, 30, self.dark_blue)  # blue endzone
+        graphics.DrawLine(offscreen_canvas, 66, 31, 66, 28, self.yellow)  # goal post left
+        graphics.DrawLine(offscreen_canvas, 64, 28, 64, 24, self.yellow)  # goal post left
+        graphics.DrawLine(offscreen_canvas, 68, 28, 68, 25, self.yellow)  # goal post left
+        graphics.DrawLine(offscreen_canvas, 65, 28, 65, 28, self.yellow)  # goal post left
+        graphics.DrawLine(offscreen_canvas, 67, 28, 67, 28, self.yellow)  # goal post left
+
+        graphics.DrawLine(offscreen_canvas, 95, 31, 95, 30, self.white)  # white midfield
+        graphics.DrawLine(offscreen_canvas, 96, 31, 96, 30, self.white)  # white midfield
+
+        right_shift_goalpost = 59
+        right_shift_endzone_white = 53
+        right_shift_endzone_blue = 56
+        graphics.DrawLine(offscreen_canvas, 69 + right_shift_endzone_white, 31, 69 + right_shift_endzone_white, 30, self.white)  # two dots of white for endzone
+        graphics.DrawLine(offscreen_canvas, 68 + right_shift_endzone_blue, 31, 68 + right_shift_endzone_blue, 30, self.dark_blue)  # blue endzone
+        graphics.DrawLine(offscreen_canvas, 68 + right_shift_endzone_blue - 1, 31, 68 + right_shift_endzone_blue - 1, 30, self.dark_blue)  # blue endzone
+        graphics.DrawLine(offscreen_canvas, 66 + right_shift_goalpost, 31, 66 + right_shift_goalpost, 28, self.yellow)  # goal post right
+        graphics.DrawLine(offscreen_canvas, 64 + right_shift_goalpost, 28, 64 + right_shift_goalpost, 24 + 1, self.yellow)  # goal post right, invert post
+        graphics.DrawLine(offscreen_canvas, 68 + right_shift_goalpost, 28, 68 + right_shift_goalpost, 25 - 1, self.yellow)  # goal post right, invert post
+        graphics.DrawLine(offscreen_canvas, 65 + right_shift_goalpost, 28, 65 + right_shift_goalpost, 28, self.yellow)  # goal post right
+        graphics.DrawLine(offscreen_canvas, 67 + right_shift_goalpost, 28, 67 + right_shift_goalpost, 28, self.yellow)  # goal post right
 
 
 # Main function
