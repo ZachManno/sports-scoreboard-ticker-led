@@ -91,10 +91,10 @@ class GraphicsRunner(SampleBase):
 
         right_shift_goalpost = 59
         right_shift_endzone_white = 53
-        right_shift_endzone_blue = 55
+        right_shift_endzone_blue = 56
         graphics.DrawLine(offscreen_canvas, 69 + right_shift_endzone_white, 31, 69 + right_shift_endzone_white, 30, self.white)  # two dots of white for endzone
-        graphics.DrawLine(offscreen_canvas, 124, 31, 124, 30, self.dark_blue)  # blue endzone
-        graphics.DrawLine(offscreen_canvas, 123, 31, 123, 30, self.dark_blue)  # blue endzone
+        graphics.DrawLine(offscreen_canvas, 68 + right_shift_endzone_blue, 31, 68 + right_shift_endzone_blue, 30, self.dark_blue)  # blue endzone
+        graphics.DrawLine(offscreen_canvas, 68 + right_shift_endzone_blue - 1, 31, 68 + right_shift_endzone_blue - 1, 30, self.dark_blue)  # blue endzone
         graphics.DrawLine(offscreen_canvas, 66 + right_shift_goalpost, 31, 66 + right_shift_goalpost, 28, self.yellow)  # goal post right
         graphics.DrawLine(offscreen_canvas, 64 + right_shift_goalpost, 28, 64 + right_shift_goalpost, 24 + 1, self.yellow)  # goal post right, invert post
         graphics.DrawLine(offscreen_canvas, 68 + right_shift_goalpost, 28, 68 + right_shift_goalpost, 25 - 1, self.yellow)  # goal post right, invert post
