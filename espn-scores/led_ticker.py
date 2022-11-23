@@ -90,6 +90,7 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, 67, 28, 67, 28, self.yellow)  # goal post left
 
         right_shift = 59
+        graphics.DrawLine(offscreen_canvas, 69 + right_shift, 31, 69 + right_shift, 30, self.white)  # two dots of white for endzone
         graphics.DrawLine(offscreen_canvas, 66 + right_shift, 31, 66 + right_shift, 28, self.yellow)  # goal post right
         graphics.DrawLine(offscreen_canvas, 64 + right_shift, 28, 64 + right_shift, 24 + 1, self.yellow)  # goal post right, invert post
         graphics.DrawLine(offscreen_canvas, 68 + right_shift, 28, 68 + right_shift, 25 - 1, self.yellow)  # goal post right, invert post
