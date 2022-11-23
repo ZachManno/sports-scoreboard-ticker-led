@@ -91,8 +91,8 @@ class GraphicsRunner(SampleBase):
 
         right_shift = 59
         graphics.DrawLine(offscreen_canvas, 66 + right_shift, 31, 66 + right_shift, 28, self.yellow)  # goal post right
-        graphics.DrawLine(offscreen_canvas, 64 + right_shift, 28, 64 + right_shift, 24 + 2, self.yellow)  # goal post right, invert post
-        graphics.DrawLine(offscreen_canvas, 68 + right_shift, 28, 68 + right_shift, 25, self.yellow)  # goal post right
+        graphics.DrawLine(offscreen_canvas, 64 + right_shift, 28, 64 + right_shift, 24 + 1, self.yellow)  # goal post right, invert post
+        graphics.DrawLine(offscreen_canvas, 68 + right_shift, 28, 68 + right_shift, 25 - 1, self.yellow)  # goal post right, invert post
         graphics.DrawLine(offscreen_canvas, 65 + right_shift, 28, 65 + right_shift, 28, self.yellow)  # goal post right
         graphics.DrawLine(offscreen_canvas, 67 + right_shift, 28, 67 + right_shift, 28, self.yellow)  # goal post right
 
