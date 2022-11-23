@@ -188,9 +188,9 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, 93, 26, 93, 26, self.white)  # white midfield
 
         # White possession arrow right
-        graphics.DrawLine(offscreen_canvas, 125, 28, 125, 24, self.white)  # white midfield
-        graphics.DrawLine(offscreen_canvas, 126, 27, 126, 25, self.white)  # white midfield
-        graphics.DrawLine(offscreen_canvas, 127, 26, 127, 26, self.white)  # white midfield
+        graphics.DrawLine(offscreen_canvas, 110, 28, 110, 24, self.white)  # white midfield
+        graphics.DrawLine(offscreen_canvas, 111, 27, 111, 25, self.white)  # white midfield
+        graphics.DrawLine(offscreen_canvas, 112, 26, 112, 26, self.white)  # white midfield
 
 
 # Main function
