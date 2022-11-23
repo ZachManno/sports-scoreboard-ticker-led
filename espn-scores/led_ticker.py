@@ -189,12 +189,12 @@ class GraphicsRunner(SampleBase):
 
     def draw_possession(self, offscreen_canvas, starting_position, pointing_direction='LEFT'):
         if pointing_direction == 'LEFT':
-            arrow_starting_position = starting_position - 5
+            arrow_starting_position = starting_position - 4
             graphics.DrawLine(offscreen_canvas, arrow_starting_position, 28, arrow_starting_position, 24, self.white)
             graphics.DrawLine(offscreen_canvas, arrow_starting_position - 1, 27, arrow_starting_position - 1, 25, self.white)
             graphics.DrawLine(offscreen_canvas, arrow_starting_position - 2, 26, arrow_starting_position - 2, 26, self.white)
         elif pointing_direction == 'RIGHT':
-            arrow_starting_position = starting_position + 5
+            arrow_starting_position = starting_position + 4
             graphics.DrawLine(offscreen_canvas, arrow_starting_position, 28, arrow_starting_position, 24, self.white)
             graphics.DrawLine(offscreen_canvas, arrow_starting_position + 1, 27, arrow_starting_position + 1, 25, self.white)
             graphics.DrawLine(offscreen_canvas, arrow_starting_position + 2, 26, arrow_starting_position + 2, 26, self.white)
