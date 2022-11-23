@@ -27,6 +27,7 @@ class GraphicsRunner(SampleBase):
         self.dark_blue = graphics.Color(0, 0, 255)
         self.yellow = graphics.Color(255, 255, 0)
         self.white = graphics.Color(255, 255, 255)
+        self.brown = graphics.Color(204, 102, 0)
         super(GraphicsRunner, self).__init__(*args, **kwargs)
 
     @staticmethod
@@ -198,10 +199,10 @@ class GraphicsRunner(SampleBase):
             graphics.DrawLine(offscreen_canvas, arrow_starting_position + 1, 27, arrow_starting_position + 1, 25, self.white)
             graphics.DrawLine(offscreen_canvas, arrow_starting_position + 2, 26, arrow_starting_position + 2, 26, self.white)
         # Draw football
-        graphics.DrawLine(offscreen_canvas, starting_position - 1, 29, starting_position + 1, 29, self.white)
-        graphics.DrawLine(offscreen_canvas, starting_position - 1, 27, starting_position + 1, 27, self.white)
-        graphics.DrawLine(offscreen_canvas, starting_position - 2, 28, starting_position - 1, 28, self.white)
-        graphics.DrawLine(offscreen_canvas, starting_position + 1, 28, starting_position + 2, 28, self.white)
+        graphics.DrawLine(offscreen_canvas, starting_position - 1, 29, starting_position + 1, 29, self.brown)
+        graphics.DrawLine(offscreen_canvas, starting_position - 1, 27, starting_position + 1, 27, self.brown)
+        graphics.DrawLine(offscreen_canvas, starting_position - 2, 28, starting_position - 1, 28, self.brown)
+        graphics.DrawLine(offscreen_canvas, starting_position + 1, 28, starting_position + 2, 28, self.brown)
 
 
 # Main function
