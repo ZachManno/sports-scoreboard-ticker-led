@@ -72,9 +72,12 @@ class GraphicsRunner(SampleBase):
         graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, scoreboard.gameclock.start_time)
 
         # Write home and away logos
-        self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 66)
-        graphics.DrawText(offscreen_canvas, self.huge_font, 94, 16, self.yellow, '@')
-        self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 104)
+        # self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 66)
+        # graphics.DrawText(offscreen_canvas, self.huge_font, 94, 16, self.yellow, '@')
+        # self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 104)
+
+        # Test drawing field goal posts and green
+        graphics.DrawLine(offscreen_canvas, 72, 15, 15, 15, self.green)
 
         # Write NFL logo in top right
         self.draw_nfl_image(offscreen_canvas)
