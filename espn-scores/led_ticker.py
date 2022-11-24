@@ -149,7 +149,7 @@ class GraphicsRunner(SampleBase):
             # self.write_scheduled_scoreboard(offscreen_canvas, color, scoreboard)
         elif scoreboard.gameclock.time_state == TimeState.LIVE:
             self.write_live_scoreboard(offscreen_canvas, color, scoreboard)
-            time.sleep(3)
+            time.sleep(5)
         else:
             self.write_final_scoreboard(offscreen_canvas, color, scoreboard)
 
