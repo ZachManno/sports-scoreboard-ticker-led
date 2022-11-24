@@ -320,6 +320,12 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, arrow_starting_position + 2, 25, arrow_starting_position + 2, 25,
                           self.white)
 
+    def draw_big_possession_football(self, offscreen_canvas, starting_position):
+        graphics.DrawLine(offscreen_canvas, starting_position - 1, 29, starting_position + 1, 29, self.brown)
+        graphics.DrawLine(offscreen_canvas, starting_position - 1, 27, starting_position + 1, 27, self.brown)
+        graphics.DrawLine(offscreen_canvas, starting_position - 2, 28, starting_position - 1, 28, self.brown)
+        graphics.DrawLine(offscreen_canvas, starting_position + 1, 28, starting_position + 2, 28, self.brown)
+
 
 # Main function
 if __name__ == "__main__":
