@@ -212,7 +212,7 @@ class GraphicsRunner(SampleBase):
         if field_direction == 'LEFT_TO_RIGHT':
             starting_position = math.floor(starting_position + 70)
         else:
-            starting_position = math.floor(starting_position + 96)
+            starting_position = math.floor(120 - starting_position)
 
         if len(str(yardline)) == 1:
             yardline_is_one_char = True
