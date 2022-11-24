@@ -292,7 +292,7 @@ class GraphicsRunner(SampleBase):
             if yardline_is_one_char:
                 self.draw_left_arrow(offscreen_canvas, starting_position + 5)
             else:
-                self.draw_left_arrow(offscreen_canvas, starting_position + 7)
+                self.draw_left_arrow(offscreen_canvas, starting_position + 8)
         elif direction == 'RIGHT_TO_THE_RIGHT':
             print('RIGHT_TO_THE_RIGHT')
             if yardline_is_one_char:
