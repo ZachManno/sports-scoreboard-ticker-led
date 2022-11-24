@@ -49,10 +49,13 @@ class GraphicsRunner(SampleBase):
         if len(scoreboard.home_team.record) < 5 and len(scoreboard.away_team.record) < 5:
             self.draw_nfl_image(offscreen_canvas)
 
-    def draw_team_image(self, offscreen_canvas, image_location, x_axis_position, size):
+    def draw_team_image(self, offscreen_canvas, image_location, x_axis_position, size, y_axis_position=None):
         image = Image.open(image_location).convert('RGB')
         image.thumbnail((size, size), Image.ANTIALIAS)
-        offscreen_canvas.SetImage(image, x_axis_position)
+        if y_axis_position:
+            offscreen_canvas.SetImage(image, x_axis_position, y_axis_position)
+        else:
+            offscreen_canvas.SetImage(image, x_axis_position)
 
     def write_team_and_record(self, offscreen_canvas, color, team_abbr_and_possible_score, record_column, record_row, record):
         graphics.DrawText(offscreen_canvas, self.medium_font, BEGINNING_COLUMN, record_row, color, team_abbr_and_possible_score)
@@ -232,8 +235,8 @@ class GraphicsRunner(SampleBase):
         graphics.DrawText(offscreen_canvas, self.smallest_font, starting_position_of_yardline, 26, self.blue, str(yardline))
 
         # Team Logos
-        self.draw_team_image(offscreen_canvas, f'images/nfl/BUF.png', 65, 12)
-        self.draw_team_image(offscreen_canvas, f'images/nfl/DET.png', 110, 12)
+        self.draw_team_image(offscreen_canvas, f'images/nfl/BUF.png', 65, 12, 16)
+        self.draw_team_image(offscreen_canvas, f'images/nfl/DET.png', 110, 12, 16)
 
 
 # Main function
