@@ -119,7 +119,7 @@ class GraphicsRunner(SampleBase):
 
         # Write down and distance if applicable
         if scoreboard.gameclock.game_situation and scoreboard.gameclock.game_situation.down_and_distance:
-            graphics.DrawText(offscreen_canvas, self.medium_font, 76, 10, self.yellow,
+            graphics.DrawText(offscreen_canvas, self.medium_font, 77, 10, self.yellow,
                               scoreboard.gameclock.game_situation.down_and_distance)
 
         self.draw_football_field(offscreen_canvas, scoreboard)
@@ -215,7 +215,7 @@ class GraphicsRunner(SampleBase):
                           self.yellow)  # goal post right
 
         if scoreboard.gameclock.game_situation:
-            self.draw_possession(offscreen_canvas, scoreboard)  # 96 is fifty yardline
+            self.draw_possession(offscreen_canvas, scoreboard)
 
         # Team Logos
         self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 64, 11,
