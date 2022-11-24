@@ -84,9 +84,9 @@ class GraphicsRunner(SampleBase):
         graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, scoreboard.gameclock.start_time)
 
         # Write home and away logos
-        # self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 66, 24)
-        # graphics.DrawText(offscreen_canvas, self.huge_font, 94, 16, self.yellow, '@')
-        # self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 104, 24)
+        self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 66, 24)
+        graphics.DrawText(offscreen_canvas, self.huge_font, 94, 16, self.yellow, '@')
+        self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 104, 24)
 
         # Test drawing field goal posts and green
         # scoreboard.gameclock.game_situation = GameSituation(down_and_distance="3rd and 7", home_team_has_ball=False,
