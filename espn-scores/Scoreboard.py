@@ -19,14 +19,70 @@ class TimeState(Enum):
     SCHEDULED = 3
 
 
+class GameSituation:
+    def __init__(self, down_and_distance: str = None,
+                 home_team_has_ball: bool = None, away_team_has_ball: bool = None,
+                 ball_on_yardline: int = None, ball_on_team: str = None):
+        self.down_and_distance = down_and_distance
+        self.home_team_has_ball = home_team_has_ball
+        self.away_team_has_ball = away_team_has_ball
+        self.ball_on_yardline = ball_on_yardline
+        self.ball_on_team = ball_on_team
+
+    @property
+    def down_and_distance(self):
+        return self._down_and_distance
+
+    @down_and_distance.setter
+    def down_and_distance(self, value):
+        self._down_and_distance = value
+
+    @property
+    def home_team_has_ball(self):
+        return self._home_team_has_ball
+
+    @home_team_has_ball.setter
+    def home_team_has_ball(self, value):
+        self._home_team_has_ball = value
+
+    @property
+    def away_team_has_ball(self):
+        return self._away_team_has_ball
+
+    @away_team_has_ball.setter
+    def away_team_has_ball(self, value):
+        self._away_team_has_ball = value
+
+    @property
+    def ball_on_yardline(self):
+        return self._ball_on_yardline
+
+    @ball_on_yardline.setter
+    def ball_on_yardline(self, value):
+        self._ball_on_yardline = value
+
+    @property
+    def ball_on_team(self):
+        return self._ball_on_team
+
+    @ball_on_team.setter
+    def ball_on_team(self, value):
+        self._ball_on_team = value
+
+    def __str__(self):
+        return str({'down_and_distance': self.down_and_distance, 'home_team_has_ball': self.home_team_has_ball,
+                    'away_team_has_ball': self.away_team_has_ball, 'ball_on_yardline': self.ball_on_yardline,
+                    'ball_on_team': self.ball_on_team})
+
+
 class GameClock:
     def __init__(self, time_state: TimeState, start_time: str = None,
-                 live_clock: str = None, live_period: str = None, down_and_distance: str = None):
+                 live_clock: str = None, live_period: str = None, game_situation: GameSituation = None):
         self.time_state = time_state
         self.start_time = start_time
         self.live_clock = live_clock
         self.live_period = live_period
-        self.down_and_distance = down_and_distance
+        self.game_situation = game_situation
 
     @property
     def time_state(self):
@@ -61,16 +117,17 @@ class GameClock:
         self._live_clock_time = value
 
     @property
-    def down_and_distance(self):
-        return self._down_and_distance
+    def game_situation(self):
+        return self._game_situation
 
-    @down_and_distance.setter
-    def down_and_distance(self, value):
-        self._down_and_distance = value
+    @game_situation.setter
+    def game_situation(self, value):
+        self._game_situation = value
 
     def __str__(self):
         return str({'time_state': self.time_state, 'start_time': self.start_time,
-                    'live_clock': self.live_clock, 'live_period': self.live_period, 'down_and_distance': self.down_and_distance})
+                    'live_clock': self.live_clock, 'live_period': self.live_period,
+                    'game_situation': str(self.game_situation)})
 
 
 class Team:

@@ -3,6 +3,7 @@ from Scoreboard import Sport
 from Scoreboard import Team
 from Scoreboard import TimeState
 from Scoreboard import GameClock
+from Scoreboard import GameSituation
 import json
 import datetime
 import calendar
@@ -55,11 +56,7 @@ def get_playoff_record(espn_game_json, is_home: bool):
 
 
 def parse_gameclock(sport, espn_game_json: dict):
-    down_distance_text = None
-    if espn_game_json['competitions'][0].get('situation'):
-        down_distance_text = espn_game_json['competitions'][0].get('situation').get('shortDownDistanceText')
-        # print(down_distance_text)
-    # print(json.dumps(espn_game_json['competitions'][0]['situation']['shortDownDistanceText'])) #competitions competitors situation shortDownDistanceText
+    game_situation = parse_game_situation(espn_game_json)
     game_status = espn_game_json.get('status').get('type')
     game_status_desc = game_status.get('name')
 
@@ -94,5 +91,37 @@ def parse_gameclock(sport, espn_game_json: dict):
     else:
         print("Unknown game_status_desc: " + game_status_desc) # New one: STATUS_END_PERIOD
     if time_state:
-        return GameClock(time_state, start_time, live_clock, live_period, down_distance_text)
+        return GameClock(time_state, start_time, live_clock, live_period, game_situation=game_situation)
     return None
+
+
+def parse_game_situation(espn_game_json):
+    ball_on_team = None
+    down_distance_text = None
+    if espn_game_json['competitions'][0].get('situation'):
+        down_distance_text = espn_game_json['competitions'][0].get('situation').get('shortDownDistanceText')
+        possession_text = espn_game_json['competitions'][0].get('situation').get('possessionText') # possessionText: "ATL 18"
+        if possession_text:
+            ball_on_team = possession_text.split()[0]
+        ball_on_yardline = espn_game_json['competitions'][0].get('situation').get('yardLine') # "yardLine": 18
+        possession_text = espn_game_json['competitions'][0].get('situation').get('possessionText')
+        ball_on_team = possession_text.split()[0]
+    else:
+        return None
+
+    if espn_game_json['competitions'][0]['competitors'][0]['homeAway'] == 'home':
+        home_team_id = espn_game_json['competitions'][0]['competitors'][0]['id']
+        # away_team_id = espn_game_json['competitions'][0]['competitors'][1]['id']
+    else:
+        home_team_id = espn_game_json['competitions'][0]['competitors'][1]['id']
+
+    team_id_in_possession = espn_game_json['competitions'][0].get('situation').get('possession')
+    if team_id_in_possession == str(home_team_id):
+        print("Home team possessing")
+        home_team_has_ball = True
+        away_team_has_ball = False
+    else:
+        home_team_has_ball = False
+        away_team_has_ball = True
+    return GameSituation(down_and_distance=down_distance_text, home_team_has_ball=home_team_has_ball,
+                         away_team_has_ball=away_team_has_ball, ball_on_yardline=ball_on_yardline, ball_on_team=ball_on_team)
