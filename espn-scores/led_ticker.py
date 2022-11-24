@@ -187,16 +187,15 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, 65 + right_shift_goalpost, 28, 65 + right_shift_goalpost, 28, self.yellow)  # goal post right
         graphics.DrawLine(offscreen_canvas, 67 + right_shift_goalpost, 28, 67 + right_shift_goalpost, 28, self.yellow)  # goal post right
 
-        self.draw_possession(offscreen_canvas, 96, 6, 'RIGHT') # 96 is fifty yardline
+        self.draw_possession(offscreen_canvas, 96, 25, 'RIGHT') # 96 is fifty yardline
         # self.draw_possession(offscreen_canvas, 80, 18, 'RIGHT')  # 96 is fifty yardline
         # self.draw_possession_arrow(offscreen_canvas, 110, 'RIGHT')
 
     def draw_possession(self, offscreen_canvas, starting_position, yardline, pointing_direction='LEFT'):
         # Left side of field calculation
         starting_position = yardline / 2.05
-        print('starting_position: ', starting_position)
         starting_position = math.floor(starting_position + 70)
-        print('starting_position: ', starting_position)
+        # print('starting_position: ', starting_position)
 
         if len(str(yardline)) == 1:
             yardline_is_one_char = True
