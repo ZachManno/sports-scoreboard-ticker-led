@@ -194,7 +194,7 @@ class GraphicsRunner(SampleBase):
             graphics.DrawLine(offscreen_canvas, arrow_starting_position - 1, 27, arrow_starting_position - 1, 25, self.white)
             graphics.DrawLine(offscreen_canvas, arrow_starting_position - 2, 26, arrow_starting_position - 2, 26, self.white)
         elif pointing_direction == 'RIGHT':
-            arrow_starting_position = starting_position + 7
+            arrow_starting_position = starting_position + 6
             graphics.DrawLine(offscreen_canvas, arrow_starting_position, 28, arrow_starting_position, 24, self.white)
             graphics.DrawLine(offscreen_canvas, arrow_starting_position + 1, 27, arrow_starting_position + 1, 25, self.white)
             graphics.DrawLine(offscreen_canvas, arrow_starting_position + 2, 26, arrow_starting_position + 2, 26, self.white)
