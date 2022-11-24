@@ -3,6 +3,7 @@ from samplebase import SampleBase
 from rgbmatrix import graphics
 from PIL import Image
 import time
+import math
 import platform
 from espn_runner import call_espn_api_and_load_scoreboard
 from Scoreboard import TimeState
@@ -194,7 +195,7 @@ class GraphicsRunner(SampleBase):
         # Left side of field calculation
         starting_position = yardline / 2.05
         print('starting_position: ', starting_position)
-        starting_position = starting_position + 72
+        starting_position = math.floor(starting_position + 72)
         print('starting_position: ', starting_position)
 
         if len(str(yardline)) == 1:
