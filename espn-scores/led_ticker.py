@@ -235,8 +235,8 @@ class GraphicsRunner(SampleBase):
         graphics.DrawText(offscreen_canvas, self.smallest_font, starting_position_of_yardline, 26, self.blue, str(yardline))
 
         # Team Logos
-        self.draw_team_image(offscreen_canvas, f'images/nfl/NE.png', 64, 12, 13)
-        self.draw_team_image(offscreen_canvas, f'images/nfl/MIN.png', 116, 12, 13)
+        self.draw_team_image(offscreen_canvas, f'images/nfl/BAL.png', 64, 12, 13)
+        self.draw_team_image(offscreen_canvas, f'images/nfl/JAX.png', 116, 12, 13)
 
 
 # Main function
