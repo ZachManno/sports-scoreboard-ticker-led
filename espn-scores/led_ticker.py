@@ -210,7 +210,7 @@ class GraphicsRunner(SampleBase):
         self.draw_possession(offscreen_canvas, scoreboard)  # 96 is fifty yardline
         # self.draw_possession(offscreen_canvas, 18, 'RIGHT')  # 96 is fifty yardline
 
-    def draw_possession(self, offscreen_canvas, scoreboard, pointing_direction='LEFT'):
+    def draw_possession(self, offscreen_canvas, scoreboard):
         if not scoreboard.gameclock.game_situation:
             return
 
@@ -275,13 +275,13 @@ class GraphicsRunner(SampleBase):
                 direction = "LEFT_TO_THE_RIGHT"
 
         if direction == 'LEFT_TO_THE_LEFT':
-            self.draw_left_arrow(offscreen_canvas, starting_position - 6)
+            self.draw_left_arrow(offscreen_canvas, starting_position - 5)
         elif direction == 'LEFT_TO_THE_RIGHT':
-            self.draw_left_arrow(offscreen_canvas, starting_position + 6)
+            self.draw_left_arrow(offscreen_canvas, starting_position + 5)
         elif direction == 'RIGHT_TO_THE_RIGHT':
-            self.draw_right_arrow(offscreen_canvas, starting_position + 6)
+            self.draw_right_arrow(offscreen_canvas, starting_position + 5)
         elif direction == 'RIGHT_TO_THE_LEFT':
-            self.draw_right_arrow(offscreen_canvas, starting_position - 6)
+            self.draw_right_arrow(offscreen_canvas, starting_position - 5)
 
     def draw_left_arrow(self, offscreen_canvas, arrow_starting_position):
         graphics.DrawLine(offscreen_canvas, arrow_starting_position, 27, arrow_starting_position, 23, self.white)
