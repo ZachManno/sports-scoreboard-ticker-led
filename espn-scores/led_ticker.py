@@ -9,6 +9,7 @@ from Scoreboard import TimeState
 from threading import Timer
 
 QUARTER_MAP = {1: '1ST', 2: '2ND', 3: '3RD', 4: '4TH'}
+YARDLINE_TO_X_AXIS_MAP = {5: 70, 10: 15, 35: 80, 40: 85, 45: 90, 50: 95}
 BEGINNING_COLUMN = 2
 
 
@@ -185,11 +186,12 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, 65 + right_shift_goalpost, 28, 65 + right_shift_goalpost, 28, self.yellow)  # goal post right
         graphics.DrawLine(offscreen_canvas, 67 + right_shift_goalpost, 28, 67 + right_shift_goalpost, 28, self.yellow)  # goal post right
 
-        # self.draw_possession(offscreen_canvas, 96, 'LEFT') # 96 is fifty yardline
-        self.draw_possession(offscreen_canvas, 80, 'RIGHT')  # 96 is fifty yardline
+        self.draw_possession(offscreen_canvas, 96, 10, 'RIGHT') # 96 is fifty yardline
+        # self.draw_possession(offscreen_canvas, 80, 18, 'RIGHT')  # 96 is fifty yardline
         # self.draw_possession_arrow(offscreen_canvas, 110, 'RIGHT')
 
-    def draw_possession(self, offscreen_canvas, starting_position, pointing_direction='LEFT'):
+    def draw_possession(self, offscreen_canvas, starting_position, yardline, pointing_direction='LEFT'):
+        starting_position = yardline + 45
         if pointing_direction == 'LEFT':
             arrow_starting_position = starting_position - 4
             graphics.DrawLine(offscreen_canvas, arrow_starting_position, 27, arrow_starting_position, 23, self.white)
