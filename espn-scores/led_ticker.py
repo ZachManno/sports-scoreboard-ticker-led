@@ -90,7 +90,7 @@ class GraphicsRunner(SampleBase):
 
         # Test drawing field goal posts and green
         scoreboard.gameclock.game_situation = GameSituation(down_and_distance="3rd and 7", home_team_has_ball=False,
-                                                            away_team_has_ball=True, ball_on_yardline=33,
+                                                            away_team_has_ball=True, ball_on_yardline=13,
                                                             ball_on_team='DET')
         self.draw_football_field(offscreen_canvas, scoreboard)
 
@@ -274,7 +274,6 @@ class GraphicsRunner(SampleBase):
         if scoreboard.gameclock.game_situation.home_team_has_ball and \
                 scoreboard.gameclock.game_situation.ball_on_team != scoreboard.home_team.city_abbr:
             direction = "LEFT_TO_THE_LEFT"
-            print("HERE7, yardline0nechar: ", yardline_is_one_char)
             if scoreboard.gameclock.game_situation.ball_on_yardline < 15:  # Home team about to score, flip the arrow on the other side so it doesn't overwrite goalpost
                 direction = "LEFT_TO_THE_RIGHT"
 
