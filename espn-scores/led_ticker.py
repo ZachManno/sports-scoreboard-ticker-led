@@ -191,7 +191,7 @@ class GraphicsRunner(SampleBase):
         # self.draw_possession_arrow(offscreen_canvas, 110, 'RIGHT')
 
     def draw_possession(self, offscreen_canvas, starting_position, yardline, pointing_direction='LEFT'):
-        starting_position = yardline + 65
+        starting_position = yardline + 60
         if pointing_direction == 'LEFT':
             arrow_starting_position = starting_position - 4
             graphics.DrawLine(offscreen_canvas, arrow_starting_position, 27, arrow_starting_position, 23, self.white)
