@@ -88,7 +88,7 @@ class GraphicsRunner(SampleBase):
 
         # Test drawing field goal posts and green
         scoreboard.gameclock.game_situation = GameSituation(down_and_distance="3rd and 7", home_team_has_ball=True,
-                                                            away_team_has_ball=False, ball_on_yardline=50, ball_on_team='DET')
+                                                            away_team_has_ball=False, ball_on_yardline=20, ball_on_team='DET')
         self.draw_football_field(offscreen_canvas, scoreboard)
 
         # Write NFL logo in top right
