@@ -25,6 +25,8 @@ class GraphicsRunner(SampleBase):
         self.green = graphics.Color(0, 255, 0)
         self.blue = graphics.Color(0, 255, 213)
         self.dark_blue = graphics.Color(0, 0, 255)
+        self.red = graphics.Color(255, 51, 0)
+        self.purple = graphics.Color(153, 51, 255)
         self.yellow = graphics.Color(255, 255, 0)
         self.white = graphics.Color(255, 255, 255)
         self.brown = graphics.Color(204, 102, 0)
@@ -160,8 +162,8 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, 70, 30, 121, 30, self.green)  # Green line at bottom of screen
         graphics.DrawLine(offscreen_canvas, 70, 31, 121, 31, self.green) # Green line at bottom of screen
         graphics.DrawLine(offscreen_canvas, 69, 31, 69, 30, self.white)  # two dots of white for endzone
-        graphics.DrawLine(offscreen_canvas, 68, 31, 68, 30, self.dark_blue)  # blue endzone
-        graphics.DrawLine(offscreen_canvas, 67, 31, 67, 30, self.dark_blue)  # blue endzone
+        graphics.DrawLine(offscreen_canvas, 68, 31, 68, 30, self.red)  # red endzone
+        graphics.DrawLine(offscreen_canvas, 67, 31, 67, 30, self.red)  # red endzone
         graphics.DrawLine(offscreen_canvas, 66, 31, 66, 28, self.yellow)  # goal post left
         graphics.DrawLine(offscreen_canvas, 64, 28, 64, 24, self.yellow)  # goal post left
         graphics.DrawLine(offscreen_canvas, 68, 28, 68, 25, self.yellow)  # goal post left
@@ -175,8 +177,8 @@ class GraphicsRunner(SampleBase):
         right_shift_endzone_white = 53
         right_shift_endzone_blue = 56
         graphics.DrawLine(offscreen_canvas, 69 + right_shift_endzone_white, 31, 69 + right_shift_endzone_white, 30, self.white)  # two dots of white for endzone
-        graphics.DrawLine(offscreen_canvas, 68 + right_shift_endzone_blue, 31, 68 + right_shift_endzone_blue, 30, self.dark_blue)  # blue endzone
-        graphics.DrawLine(offscreen_canvas, 68 + right_shift_endzone_blue - 1, 31, 68 + right_shift_endzone_blue - 1, 30, self.dark_blue)  # blue endzone
+        graphics.DrawLine(offscreen_canvas, 68 + right_shift_endzone_blue, 31, 68 + right_shift_endzone_blue, 30, self.purple)  # purple endzone
+        graphics.DrawLine(offscreen_canvas, 68 + right_shift_endzone_blue - 1, 31, 68 + right_shift_endzone_blue - 1, 30, self.purple)  # purple endzone
         graphics.DrawLine(offscreen_canvas, 66 + right_shift_goalpost, 31, 66 + right_shift_goalpost, 28, self.yellow)  # goal post right
         graphics.DrawLine(offscreen_canvas, 64 + right_shift_goalpost, 28, 64 + right_shift_goalpost, 24 + 1, self.yellow)  # goal post right, invert post
         graphics.DrawLine(offscreen_canvas, 68 + right_shift_goalpost, 28, 68 + right_shift_goalpost, 25 - 1, self.yellow)  # goal post right, invert post
@@ -205,7 +207,7 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, starting_position + 1, 28, starting_position + 2, 28, self.brown)
 
         # Draw yardline
-        graphics.DrawText(offscreen_canvas, self.smallest_font, starting_position - 2, 26, self.blue, '15')
+        graphics.DrawText(offscreen_canvas, self.smallest_font, starting_position - 2, 26, self.blue, '18')
 
 
 # Main function
