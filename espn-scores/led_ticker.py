@@ -241,8 +241,8 @@ class GraphicsRunner(SampleBase):
                           str(scoreboard.gameclock.game_situation.ball_on_yardline))
 
         # Team Logos
-        self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 64, 8, 13)
-        self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 116, 8, 13)
+        self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 64, 11, 11)
+        self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 116, 11, 11)
 
 
 # Main function
