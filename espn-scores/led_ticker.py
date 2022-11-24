@@ -193,7 +193,9 @@ class GraphicsRunner(SampleBase):
     def draw_possession(self, offscreen_canvas, starting_position, yardline, pointing_direction='LEFT'):
         # Left side of field calculation
         starting_position = yardline / 2.05
+        print('starting_position: ', starting_position)
         starting_position = starting_position + 72
+        print('starting_position: ', starting_position)
 
         if len(str(yardline)) == 1:
             yardline_is_one_char = True
