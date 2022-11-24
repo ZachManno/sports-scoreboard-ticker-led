@@ -282,7 +282,8 @@ class GraphicsRunner(SampleBase):
             print('LEFT_TO_THE_LEFT')
             self.draw_left_arrow(offscreen_canvas, starting_position - 4)
         elif direction == 'LEFT_TO_THE_RIGHT':
-            self.draw_left_arrow(offscreen_canvas, starting_position + 4)
+            print('LEFT_TO_THE_RIGHT')
+            self.draw_left_arrow(offscreen_canvas, starting_position + 6)
         elif direction == 'RIGHT_TO_THE_RIGHT':
             self.draw_right_arrow(offscreen_canvas, starting_position + 4)
         elif direction == 'RIGHT_TO_THE_LEFT':
