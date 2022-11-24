@@ -252,6 +252,7 @@ class GraphicsRunner(SampleBase):
         self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 116, 11, 10)
 
     def draw_possession_arrow(self, offscreen_canvas, scoreboard, yardline_is_one_char, starting_position):
+        direction = 'LEFT_TO_THE_LEFT' # TODO: remove
         # Away team has ball on their own side of the field
         if scoreboard.gameclock.game_situation.away_team_has_ball and \
                 scoreboard.gameclock.game_situation.ball_on_team == scoreboard.away_team.city_abbr:
