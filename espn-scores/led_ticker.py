@@ -58,8 +58,10 @@ class GraphicsRunner(SampleBase):
         else:
             offscreen_canvas.SetImage(image, x_axis_position)
 
-    def write_team_and_record(self, offscreen_canvas, color, team_abbr_and_possible_score, record_column, record_row, record):
-        graphics.DrawText(offscreen_canvas, self.medium_font, BEGINNING_COLUMN, record_row, color, team_abbr_and_possible_score)
+    def write_team_and_record(self, offscreen_canvas, color, team_abbr_and_possible_score, record_column, record_row,
+                              record):
+        graphics.DrawText(offscreen_canvas, self.medium_font, BEGINNING_COLUMN, record_row, color,
+                          team_abbr_and_possible_score)
         graphics.DrawText(offscreen_canvas, self.smallest_font, record_column, record_row, self.white, record)
 
     def write_scheduled_scoreboard(self, offscreen_canvas, color, scoreboard):
@@ -88,7 +90,8 @@ class GraphicsRunner(SampleBase):
 
         # Test drawing field goal posts and green
         scoreboard.gameclock.game_situation = GameSituation(down_and_distance="3rd and 7", home_team_has_ball=True,
-                                                            away_team_has_ball=False, ball_on_yardline=20, ball_on_team='DET')
+                                                            away_team_has_ball=False, ball_on_yardline=20,
+                                                            ball_on_team='DET')
         self.draw_football_field(offscreen_canvas, scoreboard)
 
         # Write NFL logo in top right
@@ -116,18 +119,21 @@ class GraphicsRunner(SampleBase):
 
         # Write down and distance if applicable
         if scoreboard.gameclock.down_and_distance:
-            graphics.DrawText(offscreen_canvas, self.large_font, 72, 16, self.yellow, scoreboard.gameclock.down_and_distance)
+            graphics.DrawText(offscreen_canvas, self.large_font, 72, 16, self.yellow,
+                              scoreboard.gameclock.down_and_distance)
 
     def write_final_scoreboard(self, offscreen_canvas, color, scoreboard):
         record_location = 33
         # Write away team, score and record
         self.write_team_and_record(offscreen_canvas, color,
-                                   self.format_team_abbr(scoreboard.away_team.city_abbr) + ' ' + scoreboard.away_team.score,
+                                   self.format_team_abbr(
+                                       scoreboard.away_team.city_abbr) + ' ' + scoreboard.away_team.score,
                                    record_location, 9, scoreboard.away_team.record)
 
         # Write home team, score and record
         self.write_team_and_record(offscreen_canvas, color,
-                                   self.format_team_abbr(scoreboard.home_team.city_abbr) + ' ' + scoreboard.home_team.score,
+                                   self.format_team_abbr(
+                                       scoreboard.home_team.city_abbr) + ' ' + scoreboard.home_team.score,
                                    record_location, 20, scoreboard.home_team.record)
 
         # Write FINAL
@@ -168,7 +174,7 @@ class GraphicsRunner(SampleBase):
 
     def draw_football_field(self, offscreen_canvas, scoreboard):
         graphics.DrawLine(offscreen_canvas, 70, 30, 121, 30, self.green)  # Green line at bottom of screen
-        graphics.DrawLine(offscreen_canvas, 70, 31, 121, 31, self.green) # Green line at bottom of screen
+        graphics.DrawLine(offscreen_canvas, 70, 31, 121, 31, self.green)  # Green line at bottom of screen
         graphics.DrawLine(offscreen_canvas, 69, 31, 69, 30, self.white)  # two dots of white for endzone
         graphics.DrawLine(offscreen_canvas, 68, 31, 68, 30, self.red)  # red endzone
         graphics.DrawLine(offscreen_canvas, 67, 31, 67, 30, self.red)  # red endzone
@@ -184,16 +190,24 @@ class GraphicsRunner(SampleBase):
         right_shift_goalpost = 59
         right_shift_endzone_white = 53
         right_shift_endzone_blue = 56
-        graphics.DrawLine(offscreen_canvas, 69 + right_shift_endzone_white, 31, 69 + right_shift_endzone_white, 30, self.white)  # two dots of white for endzone
-        graphics.DrawLine(offscreen_canvas, 68 + right_shift_endzone_blue, 31, 68 + right_shift_endzone_blue, 30, self.purple)  # purple endzone
-        graphics.DrawLine(offscreen_canvas, 68 + right_shift_endzone_blue - 1, 31, 68 + right_shift_endzone_blue - 1, 30, self.purple)  # purple endzone
-        graphics.DrawLine(offscreen_canvas, 66 + right_shift_goalpost, 31, 66 + right_shift_goalpost, 28, self.yellow)  # goal post right
-        graphics.DrawLine(offscreen_canvas, 64 + right_shift_goalpost, 28, 64 + right_shift_goalpost, 24 + 1, self.yellow)  # goal post right, invert post
-        graphics.DrawLine(offscreen_canvas, 68 + right_shift_goalpost, 28, 68 + right_shift_goalpost, 25 - 1, self.yellow)  # goal post right, invert post
-        graphics.DrawLine(offscreen_canvas, 65 + right_shift_goalpost, 28, 65 + right_shift_goalpost, 28, self.yellow)  # goal post right
-        graphics.DrawLine(offscreen_canvas, 67 + right_shift_goalpost, 28, 67 + right_shift_goalpost, 28, self.yellow)  # goal post right
+        graphics.DrawLine(offscreen_canvas, 69 + right_shift_endzone_white, 31, 69 + right_shift_endzone_white, 30,
+                          self.white)  # two dots of white for endzone
+        graphics.DrawLine(offscreen_canvas, 68 + right_shift_endzone_blue, 31, 68 + right_shift_endzone_blue, 30,
+                          self.purple)  # purple endzone
+        graphics.DrawLine(offscreen_canvas, 68 + right_shift_endzone_blue - 1, 31, 68 + right_shift_endzone_blue - 1,
+                          30, self.purple)  # purple endzone
+        graphics.DrawLine(offscreen_canvas, 66 + right_shift_goalpost, 31, 66 + right_shift_goalpost, 28,
+                          self.yellow)  # goal post right
+        graphics.DrawLine(offscreen_canvas, 64 + right_shift_goalpost, 28, 64 + right_shift_goalpost, 24 + 1,
+                          self.yellow)  # goal post right, invert post
+        graphics.DrawLine(offscreen_canvas, 68 + right_shift_goalpost, 28, 68 + right_shift_goalpost, 25 - 1,
+                          self.yellow)  # goal post right, invert post
+        graphics.DrawLine(offscreen_canvas, 65 + right_shift_goalpost, 28, 65 + right_shift_goalpost, 28,
+                          self.yellow)  # goal post right
+        graphics.DrawLine(offscreen_canvas, 67 + right_shift_goalpost, 28, 67 + right_shift_goalpost, 28,
+                          self.yellow)  # goal post right
 
-        self.draw_possession(offscreen_canvas, scoreboard) # 96 is fifty yardline
+        self.draw_possession(offscreen_canvas, scoreboard)  # 96 is fifty yardline
         # self.draw_possession(offscreen_canvas, 18, 'RIGHT')  # 96 is fifty yardline
 
     def draw_possession(self, offscreen_canvas, scoreboard, pointing_direction='LEFT'):
@@ -225,8 +239,10 @@ class GraphicsRunner(SampleBase):
             else:
                 arrow_starting_position = starting_position - 4
             graphics.DrawLine(offscreen_canvas, arrow_starting_position, 27, arrow_starting_position, 23, self.white)
-            graphics.DrawLine(offscreen_canvas, arrow_starting_position - 1, 26, arrow_starting_position - 1, 24, self.white)
-            graphics.DrawLine(offscreen_canvas, arrow_starting_position - 2, 25, arrow_starting_position - 2, 25, self.white)
+            graphics.DrawLine(offscreen_canvas, arrow_starting_position - 1, 26, arrow_starting_position - 1, 24,
+                              self.white)
+            graphics.DrawLine(offscreen_canvas, arrow_starting_position - 2, 25, arrow_starting_position - 2, 25,
+                              self.white)
         elif pointing_direction == 'RIGHT':
             # Right arrow to the right
             if yardline_is_one_char:
@@ -234,8 +250,10 @@ class GraphicsRunner(SampleBase):
             else:
                 arrow_starting_position = starting_position + 6
             graphics.DrawLine(offscreen_canvas, arrow_starting_position, 27, arrow_starting_position, 23, self.white)
-            graphics.DrawLine(offscreen_canvas, arrow_starting_position + 1, 26, arrow_starting_position + 1, 24, self.white)
-            graphics.DrawLine(offscreen_canvas, arrow_starting_position + 2, 25, arrow_starting_position + 2, 25, self.white)
+            graphics.DrawLine(offscreen_canvas, arrow_starting_position + 1, 26, arrow_starting_position + 1, 24,
+                              self.white)
+            graphics.DrawLine(offscreen_canvas, arrow_starting_position + 2, 25, arrow_starting_position + 2, 25,
+                              self.white)
         # Draw football
         graphics.DrawLine(offscreen_canvas, starting_position - 1, 29, starting_position + 1, 29, self.brown)
         graphics.DrawLine(offscreen_canvas, starting_position - 1, 27, starting_position + 1, 27, self.brown)
@@ -255,25 +273,49 @@ class GraphicsRunner(SampleBase):
         self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 116, 11, 10)
 
     def draw_possession_arrow(self, offscreen_canvas, scoreboard, yardline_is_one_char, starting_position):
-        yardline = scoreboard.gameclock.game_situation.ball_on_yardline
-        if pointing_direction == 'LEFT':
-            # Left arrow to the left
-            if yardline_is_one_char:
-                arrow_starting_position = starting_position - 4
-            else:
-                arrow_starting_position = starting_position - 4
-            graphics.DrawLine(offscreen_canvas, arrow_starting_position, 27, arrow_starting_position, 23, self.white)
-            graphics.DrawLine(offscreen_canvas, arrow_starting_position - 1, 26, arrow_starting_position - 1, 24, self.white)
-            graphics.DrawLine(offscreen_canvas, arrow_starting_position - 2, 25, arrow_starting_position - 2, 25, self.white)
-        elif pointing_direction == 'RIGHT':
-            # Right arrow to the right
-            if yardline_is_one_char:
-                arrow_starting_position = starting_position + 4
-            else:
-                arrow_starting_position = starting_position + 6
-            graphics.DrawLine(offscreen_canvas, arrow_starting_position, 27, arrow_starting_position, 23, self.white)
-            graphics.DrawLine(offscreen_canvas, arrow_starting_position + 1, 26, arrow_starting_position + 1, 24, self.white)
-            graphics.DrawLine(offscreen_canvas, arrow_starting_position + 2, 25, arrow_starting_position + 2, 25, self.white)
+        # Away team has ball on their own side of the field
+        if scoreboard.gameclock.game_situation.away_team_has_ball and \
+                scoreboard.gameclock.game_situation.ball_on_team == scoreboard.away_team.city_abbr:
+            direction = "RIGHT_TO_THE_RIGHT"
+        # Away team has ball on the opposing team's side of the field
+        if scoreboard.gameclock.game_situation.away_team_has_ball and \
+                scoreboard.gameclock.game_situation.ball_on_team != scoreboard.away_team.city_abbr:
+            direction = "RIGHT_TO_THE_RIGHT"
+            if yardline_is_one_char:  # Home team about to score, flip the arrow on the other side so it doesn't overwrite goalpost
+                direction = "RIGHT_TO_THE_LEFT"
+        # Home team has ball on their own side
+        if scoreboard.gameclock.game_situation.home_team_has_ball and \
+                scoreboard.gameclock.game_situation.ball_on_team == scoreboard.home_team.city_abbr:
+            direction = "LEFT_TO_THE_LEFT"
+        # Home team has ball on opposing team's side of field
+        if scoreboard.gameclock.game_situation.home_team_has_ball and \
+                scoreboard.gameclock.game_situation.ball_on_team == scoreboard.home_team.city_abbr:
+            direction = "LEFT_TO_THE_LEFT"
+            if yardline_is_one_char:  # Home team about to score, flip the arrow on the other side so it doesn't overwrite goalpost
+                direction = "LEFT_TO_THE_RIGHT"
+
+        if direction == 'LEFT_TO_THE_LEFT':
+            self.draw_left_arrow(offscreen_canvas, starting_position - 4)
+        elif direction == 'LEFT_TO_THE_RIGHT':
+            self.draw_left_arrow(offscreen_canvas, starting_position + 4)
+        elif direction == 'RIGHT_TO_THE_RIGHT':
+            self.draw_right_arrow(offscreen_canvas, starting_position + 4)
+        elif direction == 'RIGHT_TO_THE_LEFT':
+            self.draw_right_arrow(offscreen_canvas, starting_position - 4)
+
+    def draw_left_arrow(self, offscreen_canvas, arrow_starting_position):
+        graphics.DrawLine(offscreen_canvas, arrow_starting_position, 27, arrow_starting_position, 23, self.white)
+        graphics.DrawLine(offscreen_canvas, arrow_starting_position - 1, 26, arrow_starting_position - 1, 24,
+                          self.white)
+        graphics.DrawLine(offscreen_canvas, arrow_starting_position - 2, 25, arrow_starting_position - 2, 25,
+                          self.white)
+
+    def draw_right_arrow(self, offscreen_canvas, arrow_starting_position):
+        graphics.DrawLine(offscreen_canvas, arrow_starting_position, 27, arrow_starting_position, 23, self.white)
+        graphics.DrawLine(offscreen_canvas, arrow_starting_position + 1, 26, arrow_starting_position + 1, 24,
+                          self.white)
+        graphics.DrawLine(offscreen_canvas, arrow_starting_position + 2, 25, arrow_starting_position + 2, 25,
+                          self.white)
 
 
 # Main function
