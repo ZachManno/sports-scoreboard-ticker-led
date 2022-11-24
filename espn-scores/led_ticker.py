@@ -255,7 +255,7 @@ class GraphicsRunner(SampleBase):
         direction = 'LEFT_TO_THE_LEFT' # TODO: remove
         print('home_team_has_ball: ', scoreboard.gameclock.game_situation.home_team_has_ball)
         print('ball_on_team: ', scoreboard.gameclock.game_situation.ball_on_team)
-        print('city_abbr: ', scoreboard.home_team.city_abbr)
+        print('home_team_city_abbr: ', scoreboard.home_team.city_abbr)
         # Away team has ball on their own side of the field
         if scoreboard.gameclock.game_situation.away_team_has_ball and \
                 scoreboard.gameclock.game_situation.ball_on_team == scoreboard.away_team.city_abbr:
@@ -272,7 +272,7 @@ class GraphicsRunner(SampleBase):
             direction = "LEFT_TO_THE_LEFT"
         # Home team has ball on opposing team's side of field
         if scoreboard.gameclock.game_situation.home_team_has_ball and \
-                scoreboard.gameclock.game_situation.ball_on_team == scoreboard.home_team.city_abbr:
+                scoreboard.gameclock.game_situation.ball_on_team != scoreboard.home_team.city_abbr:
             direction = "LEFT_TO_THE_LEFT"
             print("HERE7, yardline0nechar: ", yardline_is_one_char)
             if yardline_is_one_char:  # Home team about to score, flip the arrow on the other side so it doesn't overwrite goalpost
