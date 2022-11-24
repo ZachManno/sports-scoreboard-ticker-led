@@ -118,9 +118,9 @@ class GraphicsRunner(SampleBase):
         self.draw_nfl_image_if_space(offscreen_canvas, scoreboard)
 
         # Write down and distance if applicable
-        if scoreboard.gameclock.down_and_distance:
+        if scoreboard.gameclock.game_situation.down_and_distance:
             graphics.DrawText(offscreen_canvas, self.medium_font, 80, 12, self.yellow,
-                              scoreboard.gameclock.down_and_distance)
+                              scoreboard.gameclock.game_situation.down_and_distance)
 
         self.draw_football_field(offscreen_canvas, scoreboard)
 
