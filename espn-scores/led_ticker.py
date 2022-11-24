@@ -49,9 +49,9 @@ class GraphicsRunner(SampleBase):
         if len(scoreboard.home_team.record) < 5 and len(scoreboard.away_team.record) < 5:
             self.draw_nfl_image(offscreen_canvas)
 
-    def draw_team_image(self, offscreen_canvas, image_location, x_axis_position):
+    def draw_team_image(self, offscreen_canvas, image_location, x_axis_position, size):
         image = Image.open(image_location).convert('RGB')
-        image.thumbnail((24, 24), Image.ANTIALIAS)
+        image.thumbnail((size, size), Image.ANTIALIAS)
         offscreen_canvas.SetImage(image, x_axis_position)
 
     def write_team_and_record(self, offscreen_canvas, color, team_abbr_and_possible_score, record_column, record_row, record):
@@ -78,9 +78,9 @@ class GraphicsRunner(SampleBase):
         graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, color, scoreboard.gameclock.start_time)
 
         # Write home and away logos
-        # self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 66)
+        # self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 66, 24)
         # graphics.DrawText(offscreen_canvas, self.huge_font, 94, 16, self.yellow, '@')
-        # self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 104)
+        # self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 104, 24)
 
         # Test drawing field goal posts and green
         self.draw_football_field(offscreen_canvas)
@@ -187,9 +187,8 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, 65 + right_shift_goalpost, 28, 65 + right_shift_goalpost, 28, self.yellow)  # goal post right
         graphics.DrawLine(offscreen_canvas, 67 + right_shift_goalpost, 28, 67 + right_shift_goalpost, 28, self.yellow)  # goal post right
 
-        self.draw_possession(offscreen_canvas, 96, 25, 'RIGHT') # 96 is fifty yardline
-        # self.draw_possession(offscreen_canvas, 80, 18, 'RIGHT')  # 96 is fifty yardline
-        # self.draw_possession_arrow(offscreen_canvas, 110, 'RIGHT')
+        self.draw_possession(offscreen_canvas, 25, 'RIGHT') # 96 is fifty yardline
+        # self.draw_possession(offscreen_canvas, 18, 'RIGHT')  # 96 is fifty yardline
 
     def draw_possession(self, offscreen_canvas, starting_position, yardline, pointing_direction='LEFT'):
         # Left side of field calculation
@@ -231,6 +230,10 @@ class GraphicsRunner(SampleBase):
         else:
             starting_position_of_yardline = starting_position - 2
         graphics.DrawText(offscreen_canvas, self.smallest_font, starting_position_of_yardline, 26, self.blue, str(yardline))
+
+        # Team Logos
+        self.draw_team_image(offscreen_canvas, f'BUF.png', 65, 12)
+        self.draw_team_image(offscreen_canvas, f'DET.png', 110, 12)
 
 
 # Main function
