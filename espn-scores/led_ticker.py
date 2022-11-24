@@ -193,18 +193,28 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, 65 + right_shift_goalpost, 28, 65 + right_shift_goalpost, 28, self.yellow)  # goal post right
         graphics.DrawLine(offscreen_canvas, 67 + right_shift_goalpost, 28, 67 + right_shift_goalpost, 28, self.yellow)  # goal post right
 
-        self.draw_possession(offscreen_canvas, scoreboard, 'RIGHT') # 96 is fifty yardline
+        self.draw_possession(offscreen_canvas, scoreboard) # 96 is fifty yardline
         # self.draw_possession(offscreen_canvas, 18, 'RIGHT')  # 96 is fifty yardline
 
     def draw_possession(self, offscreen_canvas, scoreboard, pointing_direction='LEFT'):
         if not scoreboard.gameclock.game_situation:
             return
 
-        # Left side of field calculation
-        starting_position = scoreboard.gameclock.game_situation.ball_on_yardline / 2.05
-        starting_position = math.floor(starting_position + 70)
+        yardline = scoreboard.gameclock.game_situation.ball_on_yardline
 
-        if len(str(scoreboard.gameclock.game_situation.ball_on_yardline)) == 1:
+        field_direction = 'LEFT_TO_RIGHT'
+        if scoreboard.gameclock.game_situation.ball_on_team == scoreboard.away_team.city_abbr:
+            field_direction = 'LEFT_TO_RIGHT'
+        else:
+            field_direction = 'RIGHT_TO_LEFT'
+
+        starting_position = scoreboard.gameclock.game_situation.ball_on_yardline / 2.05
+        if field_direction == 'LEFT_TO_RIGHT':
+            starting_position = math.floor(starting_position + 70)
+        else:
+            starting_position = math.floor(starting_position + 96)
+
+        if len(str(yardline)) == 1:
             yardline_is_one_char = True
         else:
             yardline_is_one_char = False
@@ -238,11 +248,32 @@ class GraphicsRunner(SampleBase):
         else:
             starting_position_of_yardline = starting_position - 2
         graphics.DrawText(offscreen_canvas, self.smallest_font, starting_position_of_yardline, 26, self.blue,
-                          str(scoreboard.gameclock.game_situation.ball_on_yardline))
+                          str(yardline))
 
         # Team Logos
         self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 64, 11, 10)
         self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 116, 11, 10)
+
+    def draw_possession_arrow(self, offscreen_canvas, scoreboard, yardline_is_one_char, starting_position):
+        yardline = scoreboard.gameclock.game_situation.ball_on_yardline
+        if pointing_direction == 'LEFT':
+            # Left arrow to the left
+            if yardline_is_one_char:
+                arrow_starting_position = starting_position - 4
+            else:
+                arrow_starting_position = starting_position - 4
+            graphics.DrawLine(offscreen_canvas, arrow_starting_position, 27, arrow_starting_position, 23, self.white)
+            graphics.DrawLine(offscreen_canvas, arrow_starting_position - 1, 26, arrow_starting_position - 1, 24, self.white)
+            graphics.DrawLine(offscreen_canvas, arrow_starting_position - 2, 25, arrow_starting_position - 2, 25, self.white)
+        elif pointing_direction == 'RIGHT':
+            # Right arrow to the right
+            if yardline_is_one_char:
+                arrow_starting_position = starting_position + 4
+            else:
+                arrow_starting_position = starting_position + 6
+            graphics.DrawLine(offscreen_canvas, arrow_starting_position, 27, arrow_starting_position, 23, self.white)
+            graphics.DrawLine(offscreen_canvas, arrow_starting_position + 1, 26, arrow_starting_position + 1, 24, self.white)
+            graphics.DrawLine(offscreen_canvas, arrow_starting_position + 2, 25, arrow_starting_position + 2, 25, self.white)
 
 
 # Main function
