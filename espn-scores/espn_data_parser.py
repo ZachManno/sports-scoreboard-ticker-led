@@ -103,6 +103,8 @@ def parse_game_situation(espn_game_json):
         possession_text = espn_game_json['competitions'][0].get('situation').get('possessionText') # possessionText: "ATL 18"
         if possession_text:
             ball_on_team = possession_text.split()[0]
+        else:
+            return None
         ball_on_yardline = espn_game_json['competitions'][0].get('situation').get('yardLine') # "yardLine": 18, yardline: 72
         if ball_on_yardline > 50:
             ball_on_yardline = 100 - ball_on_yardline
