@@ -294,7 +294,10 @@ class GraphicsRunner(SampleBase):
                 self.draw_right_arrow(offscreen_canvas, starting_position + 6)
         elif direction == 'RIGHT_TO_THE_LEFT':
             print('RIGHT_TO_THE_LEFT')
-            self.draw_right_arrow(offscreen_canvas, starting_position - 5)
+            if yardline_is_one_char:
+                self.draw_right_arrow(offscreen_canvas, starting_position - 5)
+            else:
+                self.draw_right_arrow(offscreen_canvas, starting_position - 7)
 
     def draw_left_arrow(self, offscreen_canvas, arrow_starting_position):
         graphics.DrawLine(offscreen_canvas, arrow_starting_position, 27, arrow_starting_position, 23, self.white)
