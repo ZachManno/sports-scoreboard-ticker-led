@@ -7,6 +7,7 @@ import math
 import platform
 from espn_runner import call_espn_api_and_load_scoreboard
 from Scoreboard import TimeState
+from Scoreboard import GameSituation
 from threading import Timer
 
 QUARTER_MAP = {1: '1ST', 2: '2ND', 3: '3RD', 4: '4TH'}
@@ -86,7 +87,9 @@ class GraphicsRunner(SampleBase):
         # self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 104, 24)
 
         # Test drawing field goal posts and green
-        self.draw_football_field(offscreen_canvas)
+        scoreboard.gameclock.game_situation = GameSituation(down_and_distance="3rd and 7", home_team_has_ball=True,
+                                                            away_team_has_ball=False, ball_on_yardline=20, ball_on_team='DET')
+        self.draw_football_field(offscreen_canvas, scoreboard)
 
         # Write NFL logo in top right
         self.draw_nfl_image(offscreen_canvas)
@@ -163,7 +166,7 @@ class GraphicsRunner(SampleBase):
                 offscreen_canvas = self.matrix.CreateFrameCanvas()
                 time.sleep(5)
 
-    def draw_football_field(self, offscreen_canvas):
+    def draw_football_field(self, offscreen_canvas, scoreboard):
         graphics.DrawLine(offscreen_canvas, 70, 30, 121, 30, self.green)  # Green line at bottom of screen
         graphics.DrawLine(offscreen_canvas, 70, 31, 121, 31, self.green) # Green line at bottom of screen
         graphics.DrawLine(offscreen_canvas, 69, 31, 69, 30, self.white)  # two dots of white for endzone
@@ -190,16 +193,18 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, 65 + right_shift_goalpost, 28, 65 + right_shift_goalpost, 28, self.yellow)  # goal post right
         graphics.DrawLine(offscreen_canvas, 67 + right_shift_goalpost, 28, 67 + right_shift_goalpost, 28, self.yellow)  # goal post right
 
-        self.draw_possession(offscreen_canvas, 25, 'RIGHT') # 96 is fifty yardline
+        self.draw_possession(offscreen_canvas, scoreboard, 'RIGHT') # 96 is fifty yardline
         # self.draw_possession(offscreen_canvas, 18, 'RIGHT')  # 96 is fifty yardline
 
-    def draw_possession(self, offscreen_canvas, yardline, pointing_direction='LEFT'):
-        # Left side of field calculation
-        starting_position = yardline / 2.05
-        starting_position = math.floor(starting_position + 70)
-        # print('starting_position: ', starting_position)
+    def draw_possession(self, offscreen_canvas, scoreboard, pointing_direction='LEFT'):
+        if not scoreboard.gameclock.game_situation:
+            return
 
-        if len(str(yardline)) == 1:
+        # Left side of field calculation
+        starting_position = scoreboard.gameclock.game_situation.ball_on_yardline / 2.05
+        starting_position = math.floor(starting_position + 70)
+
+        if len(str(scoreboard.gameclock.game_situation.ball_on_yardline)) == 1:
             yardline_is_one_char = True
         else:
             yardline_is_one_char = False
@@ -232,11 +237,12 @@ class GraphicsRunner(SampleBase):
             starting_position_of_yardline = starting_position - 1
         else:
             starting_position_of_yardline = starting_position - 2
-        graphics.DrawText(offscreen_canvas, self.smallest_font, starting_position_of_yardline, 26, self.blue, str(yardline))
+        graphics.DrawText(offscreen_canvas, self.smallest_font, starting_position_of_yardline, 26, self.blue,
+                          str(scoreboard.gameclock.game_situation.ball_on_yardline))
 
         # Team Logos
-        self.draw_team_image(offscreen_canvas, f'images/nfl/BAL.png', 64, 12, 13)
-        self.draw_team_image(offscreen_canvas, f'images/nfl/JAX.png', 116, 12, 13)
+        self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 64, 12, 13)
+        self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 116, 12, 13)
 
 
 # Main function
