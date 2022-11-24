@@ -145,11 +145,9 @@ class GraphicsRunner(SampleBase):
 
     def write_scoreboard(self, offscreen_canvas, color, scoreboard):
         if scoreboard.gameclock.time_state == TimeState.SCHEDULED:
-            pass
-            # self.write_scheduled_scoreboard(offscreen_canvas, color, scoreboard)
+            self.write_scheduled_scoreboard(offscreen_canvas, color, scoreboard)
         elif scoreboard.gameclock.time_state == TimeState.LIVE:
             self.write_live_scoreboard(offscreen_canvas, color, scoreboard)
-            time.sleep(5)
         else:
             self.write_final_scoreboard(offscreen_canvas, color, scoreboard)
 
@@ -161,7 +159,12 @@ class GraphicsRunner(SampleBase):
 
         while True:
             print()
+            new_scoreboard = []
             for scoreboard in call_espn_api_and_load_scoreboard():
+                if scoreboard.gameclock.time_state == TimeState.LIVE:
+                    new_scoreboard.append(scoreboard)
+            # for scoreboard in call_espn_api_and_load_scoreboard():
+            for scoreboard in new_scoreboard:
                 if rotation % 2 == 0:
                     self.write_scoreboard(offscreen_canvas, self.blue, scoreboard)
                 else:
@@ -174,7 +177,7 @@ class GraphicsRunner(SampleBase):
                     rotation = 0
                 offscreen_canvas = self.matrix.SwapOnVSync(offscreen_canvas)
                 offscreen_canvas = self.matrix.CreateFrameCanvas()
-                # time.sleep(5)
+                time.sleep(5)
 
     def draw_football_field(self, offscreen_canvas, scoreboard):
         graphics.DrawLine(offscreen_canvas, 70, 30, 121, 30, self.green)  # Green line at bottom of screen
