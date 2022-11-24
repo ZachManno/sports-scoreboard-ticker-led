@@ -236,7 +236,7 @@ class GraphicsRunner(SampleBase):
 
         # Team Logos
         self.draw_team_image(offscreen_canvas, f'images/nfl/BUF.png', 64, 12, 14)
-        self.draw_team_image(offscreen_canvas, f'images/nfl/DET.png', 118, 12, 14)
+        self.draw_team_image(offscreen_canvas, f'images/nfl/DET.png', 116, 12, 14)
 
 
 # Main function
