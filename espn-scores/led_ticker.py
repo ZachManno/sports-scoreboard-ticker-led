@@ -210,7 +210,7 @@ class GraphicsRunner(SampleBase):
 
         starting_position = yardline / 2
         print('starting_position2: ', starting_position)
-        starting_position = starting_position + 71
+        starting_position = starting_position + 72
         print('starting_position3: ', starting_position)
 
         if len(str(yardline)) == 1:
