@@ -216,7 +216,12 @@ class GraphicsRunner(SampleBase):
 
         if scoreboard.gameclock.game_situation:
             self.draw_possession(offscreen_canvas, scoreboard)  # 96 is fifty yardline
-        # self.draw_possession(offscreen_canvas, 18, 'RIGHT')  # 96 is fifty yardline
+
+        # Team Logos
+        self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 64, 11,
+                             10)
+        self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 116, 11,
+                             10)
 
     def draw_possession(self, offscreen_canvas, scoreboard):
         if not scoreboard.gameclock.game_situation:
@@ -260,9 +265,6 @@ class GraphicsRunner(SampleBase):
             self.draw_big_possession_football(offscreen_canvas, 68)
         else:
             self.draw_big_possession_football(offscreen_canvas, 123)
-        # Team Logos
-        self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 64, 11, 10)
-        self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 116, 11, 10)
 
     def draw_possession_arrow(self, offscreen_canvas, scoreboard, yardline_is_one_char, starting_position):
         direction = 'LEFT_TO_THE_LEFT' # TODO: remove
