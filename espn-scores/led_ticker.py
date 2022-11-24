@@ -255,11 +255,12 @@ class GraphicsRunner(SampleBase):
         graphics.DrawText(offscreen_canvas, self.smallest_font, starting_position_of_yardline, 26, self.blue,
                           str(yardline))
 
-        # Team Logos
+        # Possession football
         if scoreboard.gameclock.game_situation.away_team_has_ball:
             self.draw_big_possession_football(offscreen_canvas, 68)
         else:
-            self.draw_big_possession_football(offscreen_canvas, 120)
+            self.draw_big_possession_football(offscreen_canvas, 123)
+        # Team Logos
         self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 64, 11, 10)
         self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 116, 11, 10)
 
