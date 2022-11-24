@@ -257,7 +257,7 @@ class GraphicsRunner(SampleBase):
 
         # Team Logos
         if scoreboard.gameclock.game_situation.away_team_has_ball:
-            self.draw_big_possession_football(offscreen_canvas, 67)
+            self.draw_big_possession_football(offscreen_canvas, 68)
         else:
             self.draw_big_possession_football(offscreen_canvas, 120)
         self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 64, 11, 10)
