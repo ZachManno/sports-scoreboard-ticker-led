@@ -276,13 +276,13 @@ class GraphicsRunner(SampleBase):
 
         if direction == 'LEFT_TO_THE_LEFT':
             print('LEFT_TO_THE_LEFT')
-            self.draw_left_arrow(offscreen_canvas, starting_position - 5)
+            self.draw_left_arrow(offscreen_canvas, starting_position - 4)
         elif direction == 'LEFT_TO_THE_RIGHT':
-            self.draw_left_arrow(offscreen_canvas, starting_position + 5)
+            self.draw_left_arrow(offscreen_canvas, starting_position + 4)
         elif direction == 'RIGHT_TO_THE_RIGHT':
-            self.draw_right_arrow(offscreen_canvas, starting_position + 5)
+            self.draw_right_arrow(offscreen_canvas, starting_position + 4)
         elif direction == 'RIGHT_TO_THE_LEFT':
-            self.draw_right_arrow(offscreen_canvas, starting_position - 5)
+            self.draw_right_arrow(offscreen_canvas, starting_position - 4)
 
     def draw_left_arrow(self, offscreen_canvas, arrow_starting_position):
         graphics.DrawLine(offscreen_canvas, arrow_starting_position, 27, arrow_starting_position, 23, self.white)
