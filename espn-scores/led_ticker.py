@@ -190,7 +190,7 @@ class GraphicsRunner(SampleBase):
         self.draw_possession(offscreen_canvas, 25, 'RIGHT') # 96 is fifty yardline
         # self.draw_possession(offscreen_canvas, 18, 'RIGHT')  # 96 is fifty yardline
 
-    def draw_possession(self, offscreen_canvas, starting_position, yardline, pointing_direction='LEFT'):
+    def draw_possession(self, offscreen_canvas, yardline, pointing_direction='LEFT'):
         # Left side of field calculation
         starting_position = yardline / 2.05
         starting_position = math.floor(starting_position + 70)
