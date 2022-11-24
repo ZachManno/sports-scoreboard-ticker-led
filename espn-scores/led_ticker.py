@@ -227,7 +227,7 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, starting_position + 1, 28, starting_position + 2, 28, self.brown)
 
         # Draw yardline
-        graphics.DrawText(offscreen_canvas, self.smallest_font, starting_position - 2, 26, self.blue, str(yardline))
+        graphics.DrawText(offscreen_canvas, self.smallest_font, starting_position - 1, 26, self.blue, str(yardline))
 
 
 # Main function
