@@ -256,6 +256,10 @@ class GraphicsRunner(SampleBase):
                           str(yardline))
 
         # Team Logos
+        if scoreboard.gameclock.game_situation.away_team_has_ball:
+            self.draw_big_possession_football(offscreen_canvas, 64)
+        else:
+            self.draw_big_possession_football(offscreen_canvas, 120)
         self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.away_team.city_abbr.upper()}.png', 64, 11, 10)
         self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 116, 11, 10)
 
@@ -322,10 +326,10 @@ class GraphicsRunner(SampleBase):
                           self.white)
 
     def draw_big_possession_football(self, offscreen_canvas, starting_position):
-        graphics.DrawLine(offscreen_canvas, starting_position - 1, 29, starting_position + 1, 29, self.brown)
-        graphics.DrawLine(offscreen_canvas, starting_position - 1, 27, starting_position + 1, 27, self.brown)
-        graphics.DrawLine(offscreen_canvas, starting_position - 2, 28, starting_position - 1, 28, self.brown)
-        graphics.DrawLine(offscreen_canvas, starting_position + 1, 28, starting_position + 2, 28, self.brown)
+        graphics.DrawLine(offscreen_canvas, starting_position - 3, 4, starting_position + 3, 4, self.brown)
+        graphics.DrawLine(offscreen_canvas, starting_position - 3, 2, starting_position + 3, 2, self.brown)
+        graphics.DrawLine(offscreen_canvas, starting_position - 4, 3, starting_position - 3, 3, self.brown)
+        graphics.DrawLine(offscreen_canvas, starting_position + 3, 3, starting_position + 4, 3, self.brown)
 
 
 # Main function
