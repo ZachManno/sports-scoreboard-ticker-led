@@ -89,10 +89,10 @@ class GraphicsRunner(SampleBase):
         # self.draw_team_image(offscreen_canvas, f'images/nfl/{scoreboard.home_team.city_abbr.upper()}.png', 104, 24)
 
         # Test drawing field goal posts and green
-        scoreboard.gameclock.game_situation = GameSituation(down_and_distance="3rd and 7", home_team_has_ball=False,
-                                                            away_team_has_ball=True, ball_on_yardline=14,
-                                                            ball_on_team='DET')
-        self.draw_football_field(offscreen_canvas, scoreboard)
+        # scoreboard.gameclock.game_situation = GameSituation(down_and_distance="3rd and 7", home_team_has_ball=False,
+        #                                                     away_team_has_ball=True, ball_on_yardline=14,
+        #                                                     ball_on_team='DET')
+        # self.draw_football_field(offscreen_canvas, scoreboard)
 
         # Write NFL logo in top right
         self.draw_nfl_image(offscreen_canvas)
@@ -119,8 +119,10 @@ class GraphicsRunner(SampleBase):
 
         # Write down and distance if applicable
         if scoreboard.gameclock.down_and_distance:
-            graphics.DrawText(offscreen_canvas, self.large_font, 72, 16, self.yellow,
+            graphics.DrawText(offscreen_canvas, self.medium_font, 80, 12, self.yellow,
                               scoreboard.gameclock.down_and_distance)
+
+        self.draw_football_field(offscreen_canvas, scoreboard)
 
     def write_final_scoreboard(self, offscreen_canvas, color, scoreboard):
         record_location = 33
@@ -253,9 +255,9 @@ class GraphicsRunner(SampleBase):
 
     def draw_possession_arrow(self, offscreen_canvas, scoreboard, yardline_is_one_char, starting_position):
         direction = 'LEFT_TO_THE_LEFT' # TODO: remove
-        print('home_team_has_ball: ', scoreboard.gameclock.game_situation.home_team_has_ball)
-        print('ball_on_team: ', scoreboard.gameclock.game_situation.ball_on_team)
-        print('home_team_city_abbr: ', scoreboard.home_team.city_abbr)
+        # print('home_team_has_ball: ', scoreboard.gameclock.game_situation.home_team_has_ball)
+        # print('ball_on_team: ', scoreboard.gameclock.game_situation.ball_on_team)
+        # print('home_team_city_abbr: ', scoreboard.home_team.city_abbr)
         # Away team has ball on their own side of the field
         if scoreboard.gameclock.game_situation.away_team_has_ball and \
                 scoreboard.gameclock.game_situation.ball_on_team == scoreboard.away_team.city_abbr:
