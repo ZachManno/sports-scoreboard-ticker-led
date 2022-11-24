@@ -191,8 +191,10 @@ class GraphicsRunner(SampleBase):
         # self.draw_possession_arrow(offscreen_canvas, 110, 'RIGHT')
 
     def draw_possession(self, offscreen_canvas, starting_position, yardline, pointing_direction='LEFT'):
-        min_starting_position_left_side = 72
-        max_starting_position_left_side = 96
+        # min_starting_position_left_side = 72
+        # max_starting_position_left_side = 96
+        min_starting_position_left_side = 1
+        max_starting_position_left_side = 25
         min_yardline = 1
         max_yardline = 49
 
@@ -204,7 +206,12 @@ class GraphicsRunner(SampleBase):
         # X / (72 + 96) = 0.5
         # X = (72 + 96) * 0.5
         starting_position = (min_starting_position_left_side + max_starting_position_left_side) * yardline_percentage
-        print('starting_position: ', starting_position)
+        print('starting_position1: ', starting_position)
+
+        starting_position = yardline / 2
+        print('starting_position2: ', starting_position)
+        starting_position = starting_position + 71
+        print('starting_position3: ', starting_position)
 
         if len(str(yardline)) == 1:
             yardline_is_one_char = True
