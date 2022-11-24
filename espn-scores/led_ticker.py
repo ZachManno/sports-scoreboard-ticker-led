@@ -337,6 +337,8 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, starting_position + 3, 6, starting_position + 2, 6, self.brown)
         graphics.DrawLine(offscreen_canvas, starting_position - 1, 7, starting_position + 1, 7, self.brown)
 
+        graphics.DrawLine(offscreen_canvas, starting_position - 1, 5, starting_position + 1, 5, self.white)
+
 
 # Main function
 if __name__ == "__main__":
