@@ -186,32 +186,14 @@ class GraphicsRunner(SampleBase):
         graphics.DrawLine(offscreen_canvas, 65 + right_shift_goalpost, 28, 65 + right_shift_goalpost, 28, self.yellow)  # goal post right
         graphics.DrawLine(offscreen_canvas, 67 + right_shift_goalpost, 28, 67 + right_shift_goalpost, 28, self.yellow)  # goal post right
 
-        self.draw_possession(offscreen_canvas, 96, 50, 'RIGHT') # 96 is fifty yardline
+        self.draw_possession(offscreen_canvas, 96, 1, 'RIGHT') # 96 is fifty yardline
         # self.draw_possession(offscreen_canvas, 80, 18, 'RIGHT')  # 96 is fifty yardline
         # self.draw_possession_arrow(offscreen_canvas, 110, 'RIGHT')
 
     def draw_possession(self, offscreen_canvas, starting_position, yardline, pointing_direction='LEFT'):
-        # min_starting_position_left_side = 72
-        # max_starting_position_left_side = 96
-        min_starting_position_left_side = 1
-        max_starting_position_left_side = 25
-        min_yardline = 1
-        max_yardline = 49
-
-        # Midway:
-        # (1 + 49) / 2 = 25
-        # 25 / (1 + 49) = 0.5
-        yardline_percentage = yardline / (min_yardline + max_yardline)
-        print('yardline_percentage: ', yardline_percentage)
-        # X / (72 + 96) = 0.5
-        # X = (72 + 96) * 0.5
-        starting_position = (min_starting_position_left_side + max_starting_position_left_side) * yardline_percentage
-        print('starting_position1: ', starting_position)
-
+        # Left side of field calculation
         starting_position = yardline / 2.05
-        print('starting_position2: ', starting_position)
         starting_position = starting_position + 72
-        print('starting_position3: ', starting_position)
 
         if len(str(yardline)) == 1:
             yardline_is_one_char = True
