@@ -90,7 +90,7 @@ class GraphicsRunner(SampleBase):
 
         # Test drawing field goal posts and green
         scoreboard.gameclock.game_situation = GameSituation(down_and_distance="3rd and 7", home_team_has_ball=True,
-                                                            away_team_has_ball=False, ball_on_yardline=10,
+                                                            away_team_has_ball=False, ball_on_yardline=6,
                                                             ball_on_team='BUF')
         self.draw_football_field(offscreen_canvas, scoreboard)
 
@@ -288,8 +288,10 @@ class GraphicsRunner(SampleBase):
             else:
                 self.draw_left_arrow(offscreen_canvas, starting_position + 7)
         elif direction == 'RIGHT_TO_THE_RIGHT':
+            print('RIGHT_TO_THE_RIGHT')
             self.draw_right_arrow(offscreen_canvas, starting_position + 4)
         elif direction == 'RIGHT_TO_THE_LEFT':
+            print('RIGHT_TO_THE_LEFT')
             self.draw_right_arrow(offscreen_canvas, starting_position - 4)
 
     def draw_left_arrow(self, offscreen_canvas, arrow_starting_position):
