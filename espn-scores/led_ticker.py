@@ -232,28 +232,7 @@ class GraphicsRunner(SampleBase):
             yardline_is_one_char = True
         else:
             yardline_is_one_char = False
-        if pointing_direction == 'LEFT':
-            # Left arrow to the left
-            if yardline_is_one_char:
-                arrow_starting_position = starting_position - 4
-            else:
-                arrow_starting_position = starting_position - 4
-            graphics.DrawLine(offscreen_canvas, arrow_starting_position, 27, arrow_starting_position, 23, self.white)
-            graphics.DrawLine(offscreen_canvas, arrow_starting_position - 1, 26, arrow_starting_position - 1, 24,
-                              self.white)
-            graphics.DrawLine(offscreen_canvas, arrow_starting_position - 2, 25, arrow_starting_position - 2, 25,
-                              self.white)
-        elif pointing_direction == 'RIGHT':
-            # Right arrow to the right
-            if yardline_is_one_char:
-                arrow_starting_position = starting_position + 4
-            else:
-                arrow_starting_position = starting_position + 6
-            graphics.DrawLine(offscreen_canvas, arrow_starting_position, 27, arrow_starting_position, 23, self.white)
-            graphics.DrawLine(offscreen_canvas, arrow_starting_position + 1, 26, arrow_starting_position + 1, 24,
-                              self.white)
-            graphics.DrawLine(offscreen_canvas, arrow_starting_position + 2, 25, arrow_starting_position + 2, 25,
-                              self.white)
+        self.draw_possession_arrow(offscreen_canvas, scoreboard, yardline_is_one_char, starting_position)
         # Draw football
         graphics.DrawLine(offscreen_canvas, starting_position - 1, 29, starting_position + 1, 29, self.brown)
         graphics.DrawLine(offscreen_canvas, starting_position - 1, 27, starting_position + 1, 27, self.brown)
@@ -295,13 +274,13 @@ class GraphicsRunner(SampleBase):
                 direction = "LEFT_TO_THE_RIGHT"
 
         if direction == 'LEFT_TO_THE_LEFT':
-            self.draw_left_arrow(offscreen_canvas, starting_position - 4)
+            self.draw_left_arrow(offscreen_canvas, starting_position - 6)
         elif direction == 'LEFT_TO_THE_RIGHT':
-            self.draw_left_arrow(offscreen_canvas, starting_position + 4)
+            self.draw_left_arrow(offscreen_canvas, starting_position + 6)
         elif direction == 'RIGHT_TO_THE_RIGHT':
-            self.draw_right_arrow(offscreen_canvas, starting_position + 4)
+            self.draw_right_arrow(offscreen_canvas, starting_position + 6)
         elif direction == 'RIGHT_TO_THE_LEFT':
-            self.draw_right_arrow(offscreen_canvas, starting_position - 4)
+            self.draw_right_arrow(offscreen_canvas, starting_position - 6)
 
     def draw_left_arrow(self, offscreen_canvas, arrow_starting_position):
         graphics.DrawLine(offscreen_canvas, arrow_starting_position, 27, arrow_starting_position, 23, self.white)
