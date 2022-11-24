@@ -119,7 +119,7 @@ class GraphicsRunner(SampleBase):
 
         # Write down and distance if applicable
         if scoreboard.gameclock.game_situation.down_and_distance:
-            graphics.DrawText(offscreen_canvas, self.medium_font, 80, 12, self.yellow,
+            graphics.DrawText(offscreen_canvas, self.medium_font, 76, 12, self.yellow,
                               scoreboard.gameclock.game_situation.down_and_distance)
 
         self.draw_football_field(offscreen_canvas, scoreboard)
