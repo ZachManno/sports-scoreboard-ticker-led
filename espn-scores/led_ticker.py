@@ -208,7 +208,7 @@ class GraphicsRunner(SampleBase):
         starting_position = (min_starting_position_left_side + max_starting_position_left_side) * yardline_percentage
         print('starting_position1: ', starting_position)
 
-        starting_position = yardline / 1.96
+        starting_position = yardline / 1.90
         print('starting_position2: ', starting_position)
         starting_position = starting_position + 72
         print('starting_position3: ', starting_position)
