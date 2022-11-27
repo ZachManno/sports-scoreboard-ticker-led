@@ -10,7 +10,7 @@ from Scoreboard import TimeState
 from Scoreboard import GameSituation
 from threading import Timer
 
-QUARTER_MAP = {1: '1ST', 2: '2ND', 3: '3RD', 4: '4TH'}
+QUARTER_MAP = {1: '1ST', 2: '2ND', 3: '3RD', 4: '4TH', 5: 'OT'}
 YARDLINE_TO_X_AXIS_MAP = {5: 70, 10: 15, 35: 80, 40: 85, 45: 90, 50: 95}
 BEGINNING_COLUMN = 2
 
