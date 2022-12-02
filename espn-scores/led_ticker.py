@@ -163,12 +163,12 @@ class GraphicsRunner(SampleBase):
 
         while True:
             print()
-            new_scoreboard = []
-            for scoreboard in call_espn_api_and_load_scoreboard():
-                if scoreboard.gameclock.time_state == TimeState.LIVE:
-                    new_scoreboard.append(scoreboard)
-            for scoreboard in new_scoreboard:
+            # new_scoreboard = []
             # for scoreboard in call_espn_api_and_load_scoreboard():
+            #     if scoreboard.gameclock.time_state == TimeState.LIVE:
+            #         new_scoreboard.append(scoreboard)
+            # for scoreboard in new_scoreboard:
+            for scoreboard in call_espn_api_and_load_scoreboard():
                 if rotation % 2 == 0:
                     self.write_scoreboard(offscreen_canvas, self.blue, scoreboard)
                 else:
