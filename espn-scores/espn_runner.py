@@ -1,4 +1,5 @@
 import requests
+from requests.adapters import HTTPAdapter, Retry
 import time
 from espn_json_helper import inSeason
 from espn_data_parser import parse_espn_api_json
@@ -24,7 +25,7 @@ def call_espn_api_and_load_scoreboard():
     # Only do NFL for now
     for sport_config in [sport_config_dict['NFL']]:
         # Query API
-        espn_response = requests.get(sport_config['url'])
+        espn_response = call_api(sport_config['url'])
         espn_data = espn_response.json()
         # Determine if InSeason and Display
         if inSeason(espn_data) is True:
@@ -34,6 +35,18 @@ def call_espn_api_and_load_scoreboard():
         for scoreboard in current_scoreboards_list:
             print(str(scoreboard))
     return current_scoreboards_list
+
+
+def call_api(url):
+    sess = requests.Session()
+
+    retries = Retry(total=7,
+                    backoff_factor=0.1,
+                    status_forcelist=[500, 502, 503, 504])
+
+    sess.mount('http://', HTTPAdapter(max_retries=retries))
+
+    return sess.get(url)
 
 
 if __name__ == "__main__":
