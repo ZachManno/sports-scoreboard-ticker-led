@@ -168,6 +168,7 @@ class GraphicsRunner(SampleBase):
                 scoreboards = list(filter(lambda scoreboard: scoreboard.gameclock.time_state == TimeState.LIVE,
                                      call_espn_api_and_load_scoreboard()))
                 if len(scoreboards) == 0:
+                    print('here44')
                     graphics.DrawText(offscreen_canvas, self.large_font, 2, 30, self.blue, 'No live scores to display')
                     time.sleep(5)
             else:
