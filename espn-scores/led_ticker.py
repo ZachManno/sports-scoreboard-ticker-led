@@ -163,6 +163,7 @@ class GraphicsRunner(SampleBase):
 
         while True:
             print()
+            print('args: ', str(self.args))
             if self.args.live_scores_only:
                 scoreboards = list(filter(lambda scoreboard: scoreboard.gameclock.time_state == TimeState.LIVE,
                                      call_espn_api_and_load_scoreboard()))
