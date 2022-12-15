@@ -163,10 +163,9 @@ class GraphicsRunner(SampleBase):
 
         while True:
             print()
-            print('args: ', str(self.args))
             if self.args.live_scores_only:
                 scoreboards = list(filter(lambda scoreboard: scoreboard.gameclock.time_state == TimeState.LIVE,
-                                     call_espn_api_and_load_scoreboard()))
+                                          call_espn_api_and_load_scoreboard()))
                 self.live_score_only_mode_no_games_check(offscreen_canvas, scoreboards)
             else:
                 scoreboards = call_espn_api_and_load_scoreboard()
@@ -192,7 +191,7 @@ class GraphicsRunner(SampleBase):
             graphics.DrawText(offscreen_canvas, self.medium_font, 70, 8, self.yellow, 'To Display')
             offscreen_canvas = self.matrix.SwapOnVSync(offscreen_canvas)
             offscreen_canvas = self.matrix.CreateFrameCanvas()
-            time.sleep(5)
+            time.sleep(10)
 
     def draw_football_field(self, offscreen_canvas, scoreboard):
         graphics.DrawLine(offscreen_canvas, 70, 30, 121, 30, self.green)  # Green line at bottom of screen
