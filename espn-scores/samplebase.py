@@ -41,6 +41,7 @@ class SampleBase(object):
 
     def process(self):
         self.args = self.parser.parse_args()
+        print('here4, self.args: ', str(self.args))
 
         options = RGBMatrixOptions()
 
