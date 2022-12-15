@@ -169,7 +169,8 @@ class GraphicsRunner(SampleBase):
                                      call_espn_api_and_load_scoreboard()))
                 if len(scoreboards) == 0:
                     print('here44')
-                    graphics.DrawText(offscreen_canvas, self.medium_font, 2, 30, self.yellow, 'No live scores to display')
+                    graphics.DrawText(offscreen_canvas, self.medium_font, 2, 2, self.yellow, 'No live scores')
+                    graphics.DrawText(offscreen_canvas, self.medium_font, 2, 20, self.yellow, 'to display')
                     offscreen_canvas = self.matrix.SwapOnVSync(offscreen_canvas)
                     offscreen_canvas = self.matrix.CreateFrameCanvas()
                     time.sleep(5)
