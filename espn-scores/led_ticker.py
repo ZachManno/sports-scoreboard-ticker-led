@@ -168,8 +168,9 @@ class GraphicsRunner(SampleBase):
                 scoreboards = list(filter(lambda scoreboard: scoreboard.gameclock.time_state == TimeState.LIVE,
                                      call_espn_api_and_load_scoreboard()))
                 if len(scoreboards) == 0:
-                    graphics.DrawText(offscreen_canvas, self.medium_font, 2, 10, self.yellow, 'No live scores')
-                    graphics.DrawText(offscreen_canvas, self.medium_font, 2, 28, self.yellow, 'to display')
+                    graphics.DrawText(offscreen_canvas, self.medium_font, 2, 8, self.yellow, 'No live scores')
+                    graphics.DrawText(offscreen_canvas, self.medium_font, 2, 20, self.yellow, 'scores')
+                    graphics.DrawText(offscreen_canvas, self.medium_font, 2, 70, self.yellow, 'to display')
                     offscreen_canvas = self.matrix.SwapOnVSync(offscreen_canvas)
                     offscreen_canvas = self.matrix.CreateFrameCanvas()
                     time.sleep(5)
